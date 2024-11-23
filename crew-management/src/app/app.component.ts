@@ -3,7 +3,15 @@ import { RouterOutlet } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import {TranslateModule, TranslatePipe, TranslateService} from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {HttpClient} from '@angular/common/http';
 
+
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 // Crew veri yapısını tanımlıyoruz
 interface Crew {
   id: number;
@@ -15,7 +23,14 @@ interface Crew {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MatTableModule, MatButtonModule, MatIconModule],
+  imports: [
+    RouterOutlet,
+    MatTableModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSelectModule,
+    TranslateModule,
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
@@ -34,6 +49,30 @@ export class AppComponent {
   // Tablo için kullanılacak sütunlar
   displayedColumns: string[] = ['firstName', 'lastName', 'title', 'actions'];
 
+
+  constructor(private translate: TranslateService) {
+    // Set the default language
+    this.translate.setDefaultLang('en');
+    this.translate.use('en'); // Initialize with English
+  }
+  debugEvent(event: Event): void {
+    console.log(event);
+    const value = (event.target as HTMLSelectElement)?.value;
+    this.switchLanguage((value as string) || null);
+    console.log(`Selected value: ${value}`);
+  }
+
+  switchLanguage(language: string | null): void {
+    if (language) {
+      this.translate.use(language);
+      console.log(`Language switched to: ${language}`);
+    } else {
+      console.error('Invalid language selection');
+    }
+  }
+
+
+
   // Düzenleme ve silme fonksiyonları
   editCrew(crew: Crew) {
     console.log('Editing crew:', crew);
@@ -42,5 +81,6 @@ export class AppComponent {
   deleteCrew(id: number) {
     this.crewList = this.crewList.filter((crew) => crew.id !== id);
   }
-}
 
+  protected readonly HTMLSelectElement = HTMLSelectElement;
+}
