@@ -334,3 +334,39 @@
 
 
 <router-outlet />
+<table mat-table [dataSource]="crewList" class="mat-elevation-z8">
+  <!-- First Name Sütunu -->
+  <ng-container matColumnDef="firstName">
+    <th mat-header-cell *matHeaderCellDef> First Name </th>
+    <td mat-cell *matCellDef="let crew"> {{ crew.firstName }} </td>
+  </ng-container>
+
+  <!-- Last Name Sütunu -->
+  <ng-container matColumnDef="lastName">
+    <th mat-header-cell *matHeaderCellDef> Last Name </th>
+    <td mat-cell *matCellDef="let crew"> {{ crew.lastName }} </td>
+  </ng-container>
+
+  <!-- Title Sütunu -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef> Title </th>
+    <td mat-cell *matCellDef="let crew"> {{ crew.title }} </td>
+  </ng-container>
+
+  <!-- Actions Sütunu -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let crew">
+      <button mat-icon-button color="primary" (click)="editCrew(crew)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="deleteCrew(crew.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <!-- Header ve Satır Tanımları -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
