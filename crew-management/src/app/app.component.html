@@ -408,7 +408,7 @@
       </button>
 
       <!-- Edit Crew (Popup Açılır) -->
-      <button mat-icon-button color="accent" >
+      <button mat-icon-button color="accent" (click)="openEditDialog(crew)">
         <mat-icon>edit</mat-icon>
       </button>
 
@@ -423,4 +423,6 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+
 

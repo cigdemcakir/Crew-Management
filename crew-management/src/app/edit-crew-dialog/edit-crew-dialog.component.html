@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>{{ 'EDIT_CREW' | translate }}</h2>
+<div mat-dialog-content>
+  <!-- First Name -->
+  <mat-form-field appearance="fill">
+    <mat-label>{{ 'FIRST_NAME' | translate }}</mat-label>
+    <input matInput [(ngModel)]="data.firstName" />
+  </mat-form-field>
+
+  <!-- Last Name -->
+  <mat-form-field appearance="fill">
+    <mat-label>{{ 'LAST_NAME' | translate }}</mat-label>
+    <input matInput [(ngModel)]="data.lastName" />
+  </mat-form-field>
+
+  <!-- Title -->
+  <mat-form-field appearance="fill">
+    <mat-label>{{ 'TITLE' | translate }}</mat-label>
+    <input matInput [(ngModel)]="data.title" />
+  </mat-form-field>
+
+  <!-- Nationality -->
+  <mat-form-field appearance="fill">
+    <mat-label>{{ 'NATIONALITY' | translate }}</mat-label>
+    <input matInput [(ngModel)]="data.nationality" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel()">{{ 'CANCEL' | translate }}</button>
+  <button mat-button color="primary" (click)="save()">{{ 'SAVE' | translate }}</button>
+</div>

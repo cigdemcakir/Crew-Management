@@ -9,6 +9,12 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {HttpClient} from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
+import { EditCrewDialogComponent } from './edit-crew-dialog/edit-crew-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+
 
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -47,7 +53,12 @@ interface Certificate {
     MatIconModule,
     MatSelectModule,
     TranslateModule,
-    CommonModule
+    CommonModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule, // Form işlevselliği için gerekli
+    MatFormFieldModule,
+    MatInputModule
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
@@ -127,6 +138,20 @@ export class AppComponent {
       certificates: [
         { id: 5, type: 'Basic Seamanship', issueDate: new Date('2020-05-10'), expiryDate: new Date('2023-05-10') }
       ]
+    },
+    {
+      id: 6,
+      firstName: 'Robert',
+      lastName: 'Williams',
+      title: 'Deckhand',
+      nationality:'India',
+      dailyRate: 80,
+      currency: 'EUR',
+      daysOnBoard: 15,
+      totalIncome: 1200, // 80 * 15
+      certificates: [
+        { id: 5, type: 'Basic Seamanship', issueDate: new Date('2020-05-10'), expiryDate: new Date('2023-05-10') }
+      ]
     }
   ];
 
@@ -143,13 +168,12 @@ export class AppComponent {
     'actions'
   ];
 
-
-
-  constructor(private translate: TranslateService) {
-    // Set the default language
+  constructor(private dialog: MatDialog, private translate: TranslateService) {
+    // Varsayılan dili ayarlayın
     this.translate.setDefaultLang('en');
-    this.translate.use('en'); // Initialize with English
+    this.translate.use('en'); // İngilizce ile başlat
   }
+
   debugEvent(event: Event): void {
     console.log(event);
     const value = (event.target as HTMLSelectElement)?.value;
@@ -166,10 +190,41 @@ export class AppComponent {
     }
   }
 
-
   deleteCrew(id: number): void {
-    this.crewList = this.crewList.filter((crew) => crew.id !== id);
+    const confirmation = confirm('Are you sure you want to delete this crew member?');
+    if (confirmation) {
+      this.crewList = this.crewList.filter((crew) => crew.id !== id);
+    }
   }
+
+  openEditDialog(crew: Crew): void {
+    const dialogRef = this.dialog.open(EditCrewDialogComponent, {
+      width: '400px',
+      data: { ...crew } // Seçilen satırdaki veriyi popup'a gönderiyoruz
+    });
+
+    dialogRef.afterClosed().subscribe((updatedCrew) => {
+      if (updatedCrew) {
+        console.log('Updated Crew:', updatedCrew); // Dönen veriyi kontrol edin
+
+        // Listeyi güncelle
+        const index = this.crewList.findIndex((c) => c.id === updatedCrew.id);
+        if (index !== -1) {
+          this.crewList[index] = updatedCrew; // Listeyi güncelle
+          this.crewList = [...this.crewList]; // Angular değişikliği algılaması için referansı değiştirin
+        } else {
+          console.error('Crew not found in the list!');
+        }
+      } else {
+        console.log('No changes made.');
+      }
+    });
+  }
+
+
+
+
+
 
 
 
