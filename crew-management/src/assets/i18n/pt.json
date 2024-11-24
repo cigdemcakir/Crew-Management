@@ -1,7 +1,14 @@
 {
+  "LANGUAGE": "Idioma",
   "FIRST_NAME": "Primeiro Nome",
-  "LAST_NAME": "Último Nome",
+  "LAST_NAME": "Sobrenome",
+  "NATIONALITY": "Nacionalidade",
   "TITLE": "Título",
-  "ACTIONS": "Ações",
-  "LANGUAGE": "Idioma"
+  "DAYS_ON_BOARD": "Dias a Bordo",
+  "DAILY_RATE": "Taxa Diária",
+  "CURRENCY": "Moeda",
+  "TOTAL_INCOME": "Rendimento Total",
+  "CERTIFICATES": "Certificados",
+  "VIEW_CERTIFICATES": "Ver Certificados",
+  "ACTIONS": "Ações"
 }

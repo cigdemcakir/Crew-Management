@@ -2,6 +2,13 @@
   "LANGUAGE": "Language",
   "FIRST_NAME": "First Name",
   "LAST_NAME": "Last Name",
+  "NATIONALITY": "Nationality",
   "TITLE": "Title",
+  "DAYS_ON_BOARD": "Days on Board",
+  "DAILY_RATE": "Daily Rate",
+  "CURRENCY": "Currency",
+  "TOTAL_INCOME": "Total Income",
+  "CERTIFICATES": "Certificates",
+  "VIEW_CERTIFICATES": "View Certificates",
   "ACTIONS": "Actions"
 }
