@@ -274,11 +274,11 @@
       <th mat-header-cell *matHeaderCellDef> {{ 'DISCOUNT' | translate }} </th>
       <td mat-cell *matCellDef="let crew">
         <input
-          matInput
-          type="number"
-          [(ngModel)]="crew.discount"
-          (input)="updateTotalIncome(crew)"
-          placeholder="Enter Discount"
+           matInput
+           type="number"
+           [(ngModel)]="crew.discount"
+           (input)="applyDiscount(crew)"
+           placeholder="Enter Discount"
         />
       </td>
     </ng-container>

@@ -69,6 +69,7 @@ interface Certificate {
 export class AppComponent {
   title = 'crew-management';
 
+  objectKeys = Object.keys; 
   // Örnek Crew verileri
   crewList: Crew[] = [
     {
@@ -175,14 +176,13 @@ export class AppComponent {
     // Varsayılan dili ayarlayın
     this.translate.setDefaultLang('en');
     this.translate.use('en'); // İngilizce ile başlat
-    this.calculateTotalIncomes();
+    this.updateTotalIncomeSummary();
   }
 
   debugEvent(event: Event): void {
     console.log(event);
     const value = (event.target as HTMLSelectElement)?.value;
     this.switchLanguage((value as string) || null);
-    console.log(`Selected value: ${value}`);
   }
 
   switchLanguage(language: string | null): void {
@@ -242,25 +242,36 @@ export class AppComponent {
       }
     });
   }
-  updateTotalIncome(crew: Crew): void {
-    const discount = crew.discount || 0;
-    crew.totalIncome = (crew.dailyRate * crew.daysOnBoard) - discount;
-    this.calculateTotalIncomes(); // Toplam gelirleri yeniden hesapla
-  }
   totalIncomeSummary: { [currency: string]: number } = {};
+  // Satır bazında güncellenmiş toplamı hesaplar
+  updateCrewList(): void {
+    this.crewList = [...this.crewList]; // Referansı değiştirmek için listeyi kopyala
+  }
 
-calculateTotalIncomes(): void {
-  this.totalIncomeSummary = {};
-  this.crewList.forEach((crew) => {
-    const currency = crew.currency;
-    if (!this.totalIncomeSummary[currency]) {
-      this.totalIncomeSummary[currency] = 0;
-    }
-    this.totalIncomeSummary[currency] += crew.totalIncome;
-  });
-}
-get objectKeys() {
-  return Object.keys;
-}
+  applyDiscount(crew: Crew): void {
+    const discount = crew.discount || 0;
+    crew.totalIncome = (crew.dailyRate * crew.daysOnBoard) - discount; // Satır toplamını hesapla
+    this.updateCrewList(); // Listeyi güncelleyerek referansı değiştir
+    this.updateTotalIncomeSummary(); // Toplam özeti güncelle
+  }
+  // Tüm verilerin toplamını günceller
+  updateTotalIncomeSummary(): void {
+    const summary: { [currency: string]: number } = {};
+
+    this.crewList.forEach((crew) => {
+      if (!summary[crew.currency]) {
+        summary[crew.currency] = 0;
+      }
+      summary[crew.currency] += crew.totalIncome;
+    });
+
+    this.totalIncomeSummary = summary;
+  }
+
+  // Satırdaki discount güncellendiğinde çağrılır
+  updateTotalIncome(crew: Crew): void {
+    this.updateTotalIncomeSummary(); // Toplam özeti güncelle
+  }
+
   protected readonly HTMLSelectElement = HTMLSelectElement;
 }
