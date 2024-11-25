@@ -204,8 +204,11 @@
 
 
 </div>
-
+<button mat-raised-button color="primary" (click)="openAddCrewDialog()">
+  {{ 'ADD_CREW' | translate }}
+</button>
 <div class="grid-container">
+ 
   <table mat-table [dataSource]="crewList" class="mat-elevation-z8">
     <!-- First Name -->
     <ng-container matColumnDef="firstName">
@@ -284,6 +287,7 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+  
 </div>
 
 

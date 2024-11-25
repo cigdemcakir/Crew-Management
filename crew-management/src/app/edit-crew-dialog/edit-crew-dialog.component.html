@@ -78,19 +78,39 @@ button:hover {
     </mat-form-field>
   </div>
   
- <!-- Row 2 -->
- <div class="form-row">
-  <mat-form-field appearance="outline">
-    <mat-label>{{ 'TITLE' | translate }}</mat-label>
-    <input matInput [(ngModel)]="data.title" />
-  </mat-form-field>
+  <div class="form-row">
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'TITLE' | translate }}</mat-label>
+      <mat-select [(value)]="data.title">
+        <mat-option *ngFor="let title of titles" [value]="title">
+          {{ title }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <!-- Nationality -->
+  <div class="form-row">
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'NATIONALITY' | translate }}</mat-label>
+      <mat-select [(value)]="data.nationality">
+        <mat-option *ngFor="let country of countries" [value]="country">
+          {{ country }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 
-  <mat-form-field appearance="outline">
-    <mat-label>{{ 'NATIONALITY' | translate }}</mat-label>
-    <input matInput [(ngModel)]="data.nationality" />
-  </mat-form-field>
-</div>
-
+  <!-- Currency -->
+  <div class="form-row">
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'CURRENCY' | translate }}</mat-label>
+      <mat-select [(value)]="data.currency">
+        <mat-option *ngFor="let currency of currencies" [value]="currency">
+          {{ currency }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
   <!-- Row 3 -->
   <div class="form-row">
     <mat-form-field appearance="outline">
@@ -102,20 +122,12 @@ button:hover {
       <mat-label>{{ 'DAILY_RATE' | translate }}</mat-label>
       <input matInput [(ngModel)]="data.dailyRate" type="number" />
     </mat-form-field>
-  </div>
-
-   <!-- Row 4 -->
-  <div class="form-row">
-    <mat-form-field appearance="outline">
-      <mat-label>{{ 'CURRENCY' | translate }}</mat-label>
-      <input matInput [(ngModel)]="data.currency" />
-    </mat-form-field>
-
     <mat-form-field appearance="outline">
       <mat-label>{{ 'TOTAL_INCOME' | translate }}</mat-label>
       <input matInput [(ngModel)]="data.totalIncome" type="number" />
     </mat-form-field>
   </div>
+
 </div>
 <div mat-dialog-actions >
   <button mat-button (click)="cancel()">{{ 'CANCEL' | translate }}</button>

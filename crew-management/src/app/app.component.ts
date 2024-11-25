@@ -14,6 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { AddCrewDialogComponent } from './add-crew-dialog/add-crew-dialog.component';
 
 
 
@@ -223,6 +224,21 @@ export class AppComponent {
       }
     });
   }
+  openAddCrewDialog(): void {
+    const dialogRef = this.dialog.open(AddCrewDialogComponent, {
+      width: '90vw',
+      maxWidth: 'none', // Maksimum genişlik sınırlamasını kaldırır
+      height: 'auto', // Yükseklik içeriğe göre dinamik olur
+      maxHeight: '90vh',
+    });
 
+    dialogRef.afterClosed().subscribe((newCrew) => {
+      if (newCrew) {
+        this.crewList.push(newCrew); // Yeni Crew ekle
+        this.crewList = [...this.crewList]; // Referans değiştirerek listeyi güncelle
+      }
+    });
+  }
+  
   protected readonly HTMLSelectElement = HTMLSelectElement;
 }
