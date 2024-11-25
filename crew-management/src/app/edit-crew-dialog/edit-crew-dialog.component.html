@@ -1,30 +1,123 @@
-<h2 mat-dialog-title>{{ 'EDIT_CREW' | translate }}</h2>
-<div mat-dialog-content>
-  <!-- First Name -->
-  <mat-form-field appearance="fill">
-    <mat-label>{{ 'FIRST_NAME' | translate }}</mat-label>
-    <input matInput [(ngModel)]="data.firstName" />
-  </mat-form-field>
+<style>
+  /* Genel popup düzeni */
+.mat-dialog-container {
+  width: 700px; /* Popup genişliği */
+  max-width: 90%;
+  border-radius: 16px; /* Yuvarlak köşeler */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Hafif gölge */
+  background: linear-gradient(135deg, #ffffff, #f8f9fa); /* Arka plan gradyan */
+  padding: 24px;
+}
 
-  <!-- Last Name -->
-  <mat-form-field appearance="fill">
-    <mat-label>{{ 'LAST_NAME' | translate }}</mat-label>
-    <input matInput [(ngModel)]="data.lastName" />
-  </mat-form-field>
+/* Başlık */
+.popup-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16px;
+  text-align: center;
+}
 
-  <!-- Title -->
-  <mat-form-field appearance="fill">
+/* İçerik düzeni */
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Satır düzeni */
+.form-row {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+/* Form elemanları */
+mat-form-field {
+  flex: 1; /* Elemanların eşit genişlikte olması için */
+  background: #fff;
+  border-radius: 8px;
+}
+
+/* Buton düzeni */
+mat-dialog-actions {
+  margin-top: 16px;
+  justify-content: flex-end;
+}
+
+mat-form-field {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+mat-form-field:hover {
+  transform: scale(1.02);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  transition: background 0.3s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+</style>
+
+<h2 mat-dialog-title  class="popup-title">{{ 'EDIT CREW' | translate }}</h2>
+<div mat-dialog-content class="popup-content">
+  <div class="form-row">
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'FIRST_NAME' | translate }}</mat-label>
+      <input matInput [(ngModel)]="data.firstName" />
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'LAST_NAME' | translate }}</mat-label>
+      <input matInput [(ngModel)]="data.lastName" />
+    </mat-form-field>
+  </div>
+  
+ <!-- Row 2 -->
+ <div class="form-row">
+  <mat-form-field appearance="outline">
     <mat-label>{{ 'TITLE' | translate }}</mat-label>
     <input matInput [(ngModel)]="data.title" />
   </mat-form-field>
 
-  <!-- Nationality -->
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="outline">
     <mat-label>{{ 'NATIONALITY' | translate }}</mat-label>
     <input matInput [(ngModel)]="data.nationality" />
   </mat-form-field>
 </div>
-<div mat-dialog-actions>
+
+  <!-- Row 3 -->
+  <div class="form-row">
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'DAYS_ON_BOARD' | translate }}</mat-label>
+      <input matInput [(ngModel)]="data.daysOnBoard" type="number" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'DAILY_RATE' | translate }}</mat-label>
+      <input matInput [(ngModel)]="data.dailyRate" type="number" />
+    </mat-form-field>
+  </div>
+
+   <!-- Row 4 -->
+  <div class="form-row">
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'CURRENCY' | translate }}</mat-label>
+      <input matInput [(ngModel)]="data.currency" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'TOTAL_INCOME' | translate }}</mat-label>
+      <input matInput [(ngModel)]="data.totalIncome" type="number" />
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions >
   <button mat-button (click)="cancel()">{{ 'CANCEL' | translate }}</button>
   <button mat-button color="primary" (click)="save()">{{ 'SAVE' | translate }}</button>
 </div>

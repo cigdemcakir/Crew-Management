@@ -199,7 +199,10 @@ export class AppComponent {
 
   openEditDialog(crew: Crew): void {
     const dialogRef = this.dialog.open(EditCrewDialogComponent, {
-      width: '400px',
+      width: '90vw',
+      maxWidth: 'none', // Maksimum genişlik sınırlamasını kaldırır
+      height: 'auto', // Yükseklik içeriğe göre dinamik olur
+      maxHeight: '90vh',
       data: { ...crew } // Seçilen satırdaki veriyi popup'a gönderiyoruz
     });
 
@@ -220,16 +223,6 @@ export class AppComponent {
       }
     });
   }
-
-
-
-
-
-
-
-
-
-
 
   protected readonly HTMLSelectElement = HTMLSelectElement;
 }
