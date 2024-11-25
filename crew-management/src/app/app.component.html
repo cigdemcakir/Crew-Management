@@ -174,7 +174,30 @@
     overflow: hidden;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   }
+  .total-income-summary-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Dikey ortalama */
+  align-items: center; /* Yatay ortalama */
+  text-align: center; /* Metinlerin ortalanması */
+  margin: 20px 0; /* Üst ve alt boşluk */
+}
 
+.total-income-summary-container h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.total-income-summary-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.total-income-summary-container li {
+  font-size: 1.2rem;
+  margin: 5px 0;
+}
 
   @media screen and (max-width: 650px) {
     .content {
@@ -246,6 +269,20 @@
       <td mat-cell *matCellDef="let crew"> {{ crew.currency }} </td>
     </ng-container>
   
+    <!-- Discount -->
+    <ng-container matColumnDef="discount">
+      <th mat-header-cell *matHeaderCellDef> {{ 'DISCOUNT' | translate }} </th>
+      <td mat-cell *matCellDef="let crew">
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="crew.discount"
+          (input)="updateTotalIncome(crew)"
+          placeholder="Enter Discount"
+        />
+      </td>
+    </ng-container>
+    
     <!-- Total Income -->
     <ng-container matColumnDef="totalIncome">
       <th mat-header-cell *matHeaderCellDef> {{ 'TOTAL_INCOME' | translate }} </th>
@@ -287,9 +324,17 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  
+ 
 </div>
 
+<div class="total-income-summary-container">
+  <h3>{{ 'TOTAL INCOME SUMMARY' | translate }}</h3>
+  <ul>
+    <li *ngFor="let currency of objectKeys(totalIncomeSummary)">
+      {{ currency }}: {{ totalIncomeSummary[currency] | currency: currency }}
+    </li>
+  </ul>
+</div>
 
 
 

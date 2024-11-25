@@ -32,6 +32,7 @@ interface Crew {
   currency: string; // Ücretin para birimi
   daysOnBoard: number; // Gemide çalıştığı gün sayısı
   totalIncome: number; // Toplam kazanç (dailyRate * daysOnBoard)
+  discount?: number; // Yeni Discount Alanı
   certificates?: Certificate[]; // Opsiyonel olarak tayfanın sertifikaları
 }
 
@@ -164,6 +165,7 @@ export class AppComponent {
     'daysOnBoard',
     'dailyRate',
     'currency',
+    'discount', // Yeni sütun
     'totalIncome',
     'certificates',
     'actions'
@@ -173,6 +175,7 @@ export class AppComponent {
     // Varsayılan dili ayarlayın
     this.translate.setDefaultLang('en');
     this.translate.use('en'); // İngilizce ile başlat
+    this.calculateTotalIncomes();
   }
 
   debugEvent(event: Event): void {
@@ -239,6 +242,25 @@ export class AppComponent {
       }
     });
   }
-  
+  updateTotalIncome(crew: Crew): void {
+    const discount = crew.discount || 0;
+    crew.totalIncome = (crew.dailyRate * crew.daysOnBoard) - discount;
+    this.calculateTotalIncomes(); // Toplam gelirleri yeniden hesapla
+  }
+  totalIncomeSummary: { [currency: string]: number } = {};
+
+calculateTotalIncomes(): void {
+  this.totalIncomeSummary = {};
+  this.crewList.forEach((crew) => {
+    const currency = crew.currency;
+    if (!this.totalIncomeSummary[currency]) {
+      this.totalIncomeSummary[currency] = 0;
+    }
+    this.totalIncomeSummary[currency] += crew.totalIncome;
+  });
+}
+get objectKeys() {
+  return Object.keys;
+}
   protected readonly HTMLSelectElement = HTMLSelectElement;
 }
