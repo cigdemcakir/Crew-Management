@@ -40,6 +40,8 @@ export class CrewCardComponent implements OnInit {
     
     // Route parametresinden ID'yi al ve tayfa verisini yükle
     const id = this.route.snapshot.paramMap.get('id');
+    console.log("hi")
+    console.log(id)
     if (id) {
       this.crew = this.crewService.getCrewById(+id); // Servisten tayfa bilgisi al
     }

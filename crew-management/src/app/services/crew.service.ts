@@ -120,6 +120,9 @@ export class CrewService {
   // ID'ye göre tayfayı döndürür
   getCrewById(id: number): Crew | undefined {
     console.log(this.crewList);
+    console.log(id);
+    var a=this.crewList.find((crew) => crew.id === id);
+    console.log(a);
     return this.crewList.find((crew) => crew.id === id);
   }
 

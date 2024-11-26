@@ -93,32 +93,34 @@
     <!-- Certificates -->
     <h3>Certificates</h3>
     <div *ngFor="let cert of newCrew.certificates; let i = index" class="form-row">
+      <!-- Certificate Type -->
       <mat-form-field appearance="outline">
         <mat-label>Certificate Type</mat-label>
-        <mat-select [(ngModel)]="cert.type">
+        <mat-select [(ngModel)]="cert.type" name="certType{{i}}">
           <mat-option *ngFor="let type of certificateTypes" [value]="type.name">
             {{ type.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>
-
+    
+      <!-- Issue Date -->
       <mat-form-field appearance="outline">
         <mat-label>Issue Date</mat-label>
-        <input matInput [matDatepicker]="picker" [(ngModel)]="cert.issueDate" />
+        <input matInput [matDatepicker]="picker" [(ngModel)]="cert.issueDate" name="issueDate{{i}}" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-
+    
+      <!-- Expiry Date -->
       <mat-form-field appearance="outline">
         <mat-label>Expiry Date</mat-label>
-        <input matInput [matDatepicker]="picker2" [(ngModel)]="cert.expiryDate" />
+        <input matInput [matDatepicker]="picker2" [(ngModel)]="cert.expiryDate" name="expiryDate{{i}}" />
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>
-
-      <button mat-icon-button color="warn" (click)="removeCertificate(i)">
-        Delete
-      </button>
+    
+      <!-- Delete Button -->
+      <button mat-icon-button color="warn" (click)="removeCertificate(i)">Delete</button>
     </div>
 
     <button
