@@ -96,47 +96,24 @@ export class CrewService {
           { id: 5, type: 'Basic Seamanship', issueDate: new Date('2020-05-10'), expiryDate: new Date('2023-05-10') }
         ]
       },
-      {
-        id: 6,
-        firstName: 'Robert',
-        lastName: 'Williams',
-        title: 'Deckhand',
-        nationality:'India',
-        dailyRate: 80,
-        currency: 'EUR',
-        daysOnBoard: 15,
-        totalIncome: 1200, // 80 * 15
-        certificates: [
-          { id: 5, type: 'Basic Seamanship', issueDate: new Date('2020-05-10'), expiryDate: new Date('2023-05-10') }
-        ]
-      }
   ];
 
-  // Tüm tayfa listesini döndürür
   getCrewList(): Crew[] {
     return [...this.crewList];
   }
 
-  // ID'ye göre tayfayı döndürür
   getCrewById(id: number): Crew | undefined {
-    console.log(this.crewList);
-    console.log(id);
-    var a=this.crewList.find((crew) => crew.id === id);
-    console.log(a);
     return this.crewList.find((crew) => crew.id === id);
   }
 
-  // Yeni tayfa ekler
   addCrew(newCrew: Crew): void {
     const maxId = this.crewList.reduce((max, crew) => (crew.id > max ? crew.id : max), 0);
 
-    // Yeni tayfa için ID ata
     newCrew.id = maxId + 1;
 
     this.crewList.push(newCrew);
   }
 
-  // Mevcut tayfayı günceller
   updateCrew(updatedCrew: Crew): void {
     const index = this.crewList.findIndex((crew) => crew.id === updatedCrew.id);
     if (index !== -1) {
@@ -144,7 +121,6 @@ export class CrewService {
     }
   }
 
-  // ID'ye göre tayfayı siler
   deleteCrew(id: number): void {
     this.crewList = this.crewList.filter((crew) => crew.id !== id);
   }

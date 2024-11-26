@@ -4,7 +4,7 @@ import { CertificateTypeCreateComponent } from './certificate-type-create/certif
 import { AppComponent } from './app.component';
 
 export const routes: Routes = [
- // { path: '', component: AppComponent }, // Ana sayfa
-  { path: 'crew-card/:id', component: CrewCardComponent }, // Tayfa detay sayfası
+ // { path: '', component: AppComponent }, // Anasayfa
+  { path: 'crew-card/:id', component: CrewCardComponent },
   { path: 'add-certificate-type', component: CertificateTypeCreateComponent },
 ];

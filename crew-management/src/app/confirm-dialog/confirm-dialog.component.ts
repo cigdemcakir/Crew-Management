@@ -5,8 +5,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-confirm-dialog',
-  standalone: true, // Standalone olarak tanımlıyorsanız bunu eklemelisiniz
-  imports: [MatDialogModule, MatButtonModule], // Gerekli Angular Material modüllerini burada ekleyin
+  standalone: true,
+  imports: [MatDialogModule, MatButtonModule],
   templateUrl: './confirm-dialog.component.html',
   styleUrls: ['./confirm-dialog.component.css'],
 })
@@ -17,10 +17,10 @@ export class ConfirmDialogComponent {
   ) {}
 
   onConfirm(): void {
-    this.dialogRef.close(true); // Onay
+    this.dialogRef.close(true);
   }
 
   onCancel(): void {
-    this.dialogRef.close(false); // İptal
+    this.dialogRef.close(false);
   }
 }

@@ -3,22 +3,23 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CertificateTypeService } from '../services/certificate-type.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'; // Reactive Forms Modülü
-import { MatFormFieldModule } from '@angular/material/form-field'; // Form Field için
-import { MatInputModule } from '@angular/material/input'; // Input Alanı için
-import { MatButtonModule } from '@angular/material/button'; // Butonlar için
-import { CommonModule } from '@angular/common'; // Angular'ın ortak modülü
-import { TranslateModule } from '@ngx-translate/core'; // Çeviri modülü
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-certificate-type-create',
+  standalone: true,
   imports: [
-    ReactiveFormsModule, // Reactive Forms
-    FormsModule, // Template Forms
-    MatFormFieldModule, // Material Form Field
-    MatInputModule, // Material Input
-    MatButtonModule, // Material Button
-    CommonModule, // Ortak Angular özellikleri
-    TranslateModule, // Çeviri Modülü
+    ReactiveFormsModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    CommonModule,
+    TranslateModule,
   ],
   templateUrl: './certificate-type-create.component.html',
   styleUrls: ['./certificate-type-create.component.css'],
@@ -32,8 +33,8 @@ export class CertificateTypeCreateComponent {
     private router: Router
   ) {
     this.certificateTypeForm = this.fb.group({
-      name: ['', Validators.required], // Name zorunlu
-      description: [''], // Description isteğe bağlı
+      name: ['', Validators.required],
+      description: [''],
     });
   }
 
@@ -41,11 +42,11 @@ export class CertificateTypeCreateComponent {
     if (this.certificateTypeForm.valid) {
       this.certificateTypeService.addCertificateType(this.certificateTypeForm.value);
 
-      this.router.navigate(['/']); // Anasayfaya yönlendir
+      this.router.navigate(['/']);
     }
   }
 
   onCancel(): void {
-    this.router.navigate(['/']); // İptal edildiğinde anasayfaya yönlendir
+    this.router.navigate(['/']);
   }
 }

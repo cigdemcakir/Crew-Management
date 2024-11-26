@@ -1,15 +1,13 @@
 <style>
-  /* Genel popup düzeni */
 .mat-dialog-container {
-  width: 700px; /* Popup genişliği */
+  width: 700px;
   max-width: 90%;
-  border-radius: 16px; /* Yuvarlak köşeler */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Hafif gölge */
-  background: linear-gradient(135deg, #ffffff, #f8f9fa); /* Arka plan gradyan */
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
   padding: 24px;
 }
 
-/* Başlık */
 .popup-title {
   font-size: 1.5rem;
   font-weight: bold;
@@ -18,28 +16,24 @@
   text-align: center;
 }
 
-/* İçerik düzeni */
 .popup-content {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-/* Satır düzeni */
 .form-row {
   display: flex;
   gap: 16px;
   justify-content: space-between;
 }
 
-/* Form elemanları */
 mat-form-field {
-  flex: 1; /* Elemanların eşit genişlikte olması için */
+  flex: 1;
   background: #fff;
   border-radius: 8px;
 }
 
-/* Buton düzeni */
 mat-dialog-actions {
   margin-top: 16px;
   justify-content: flex-end;
@@ -111,7 +105,7 @@ button:hover {
       </mat-select>
     </mat-form-field>
   </div>
-  <!-- Row 3 -->
+
   <div class="form-row">
     <mat-form-field appearance="outline">
       <mat-label>{{ 'DAYS_ON_BOARD' | translate }}</mat-label>

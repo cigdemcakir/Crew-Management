@@ -1,7 +1,7 @@
 <h2 class="popup-title">Add Crew</h2>
 <form #crewForm="ngForm" (ngSubmit)="save(crewForm)">
   <div class="popup-content">
-    <!-- First Name and Last Name -->
+
     <div class="form-row">
       <mat-form-field appearance="outline">
         <mat-label>First Name</mat-label>
@@ -28,7 +28,6 @@
       </mat-form-field>
     </div>
 
-    <!-- Title and Nationality -->
     <div class="form-row">
       <mat-form-field appearance="outline">
         <mat-label>Title</mat-label>
@@ -51,7 +50,6 @@
       </mat-form-field>
     </div>
 
-    <!-- Days On Board and Daily Rate -->
     <div class="form-row">
       <mat-form-field appearance="outline">
         <mat-label>Currency</mat-label>
@@ -90,7 +88,6 @@
       </mat-form-field>
     </div>
 
-    <!-- Certificates -->
     <h3>Certificates</h3>
     <div *ngFor="let cert of newCrew.certificates; let i = index" class="form-row">
       <!-- Certificate Type -->
@@ -103,8 +100,6 @@
         </mat-select>
       </mat-form-field>
 
-
-      <!-- Issue Date -->
       <mat-form-field appearance="outline">
         <mat-label>Issue Date</mat-label>
         <input matInput [matDatepicker]="picker" [(ngModel)]="cert.issueDate" name="issueDate{{i}}" />
@@ -112,7 +107,6 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
-      <!-- Expiry Date -->
       <mat-form-field appearance="outline">
         <mat-label>Expiry Date</mat-label>
         <input matInput [matDatepicker]="picker2" [(ngModel)]="cert.expiryDate" name="expiryDate{{i}}" />
@@ -120,7 +114,6 @@
         <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>
 
-      <!-- Delete Button -->
       <button mat-icon-button color="warn" (click)="removeCertificate(i)">Delete</button>
     </div>
 

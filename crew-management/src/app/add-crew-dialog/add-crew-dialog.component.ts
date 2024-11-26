@@ -12,7 +12,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ChangeDetectorRef } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { MatDateFormats, MAT_DATE_FORMATS } from '@angular/material/core';
 
 @Component({
   selector: 'app-add-crew-dialog',
@@ -51,23 +50,22 @@ export class AddCrewDialogComponent {
         issueDate: null,
         expiryDate: null,
       },
-    ], // Varsayılan
+    ],
   };
 
   titles = ['Captain', 'Engineer', 'Cooker', 'Mechanic', 'Deckhand'];
   nationalities = ['USA', 'UK', 'Spain', 'India', 'Canada'];
   currencies = ['USD', 'EUR'];
 
-  certificateTypes: any[] = []; // Sertifika türleri
+  certificateTypes: any[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<AddCrewDialogComponent>,
-    private certificateTypeService: CertificateTypeService, // Servisi Enjekte Et
+    private certificateTypeService: CertificateTypeService,
     private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
-    // Sertifika türlerini servisten al
     this.certificateTypes = this.certificateTypeService.getCertificateTypes();
   }
 
@@ -93,7 +91,7 @@ export class AddCrewDialogComponent {
     if (this.newCrew.dailyRate !== null && this.newCrew.daysOnBoard !== null) {
       this.newCrew.totalIncome = this.newCrew.dailyRate * this.newCrew.daysOnBoard;
     } else {
-      this.newCrew.totalIncome = 0; // Eğer biri null ise toplam gelir sıfır olsun
+      this.newCrew.totalIncome = 0;
     }
   }
 
@@ -110,9 +108,9 @@ export class AddCrewDialogComponent {
   }
   clearField(field: string): void {
     if (field === 'daysOnBoard') {
-      this.newCrew.daysOnBoard = null; // Alanı temizle
+      this.newCrew.daysOnBoard = null;
     } else if (field === 'dailyRate') {
-      this.newCrew.dailyRate = null; // Alanı temizle
+      this.newCrew.dailyRate = null;
     }
   }
 }

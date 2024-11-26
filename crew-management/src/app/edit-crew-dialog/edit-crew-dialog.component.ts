@@ -19,35 +19,23 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './edit-crew-dialog.component.html',
   styleUrls: ['./edit-crew-dialog.component.css'],
 })
-// export class EditCrewDialogComponent {
-//   constructor(
-//     public dialogRef: MatDialogRef<EditCrewDialogComponent>,
-//     @Inject(MAT_DIALOG_DATA) public data: any
-//   ) {}
-//
-//   save(): void {
-//     this.dialogRef.close(this.data); // Düzenlenen verileri geri gönder
-//   }
-// }
 
 export class EditCrewDialogComponent {
   titles: string[] = ['Captain', 'Engineer', 'Mechanic', 'Deckhand', 'Cooker'];
   countries: string[] = ['USA', 'UK', 'India', 'Spain', 'Canada'];
   currencies: string[] = ['USD', 'EUR'];
-  
+
   constructor(
     public dialogRef: MatDialogRef<EditCrewDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any // Gelen veriyi alıyoruz
   ) {}
 
-  // Kaydetme işlemi
   save(): void {
-    this.dialogRef.close(this.data); // Değişiklikleri kapatırken geri döndür
+    this.dialogRef.close(this.data);
   }
 
-  // İptal işlemi
   cancel(): void {
-    this.dialogRef.close(); // Dialog'u kapat, hiçbir değişiklik yapmadan
+    this.dialogRef.close();
   }
 }
 

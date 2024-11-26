@@ -16,12 +16,10 @@ export class CertificateTypeService {
 
   certificateTypes$: Observable<any[]> = this.certificateTypesSubject.asObservable();
 
-   // Sertifika türlerini almak için
    getCertificateTypes(): any[] {
     return this.certificateTypesSubject.value;
   }
 
-  // Yeni sertifika türü eklemek için
   addCertificateType(newType: { name: string; description: string }): void {
     const currentTypes = this.certificateTypesSubject.value;
     this.certificateTypesSubject.next([...currentTypes, newType]);
