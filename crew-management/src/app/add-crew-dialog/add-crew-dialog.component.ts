@@ -6,6 +6,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { CommonModule } from '@angular/common';
+import { CertificateTypeService } from '../services/certificate-type.service';
+import { CertificateType } from '../models/certificate-type.model';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-add-crew-dialog',
@@ -19,6 +23,10 @@ import { CommonModule } from '@angular/common';
     MatInputModule,
     MatSelectModule,
     MatOptionModule,
+    MatOptionModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    
   ],
 })
 export class AddCrewDialogComponent {
@@ -31,13 +39,36 @@ export class AddCrewDialogComponent {
     currency: '',
     daysOnBoard: 0,
     totalIncome: 0,
+    certificates: [] as { type: string; issueDate: string; expiryDate: string }[],
   };
 
   titles = ['Captain', 'Engineer', 'Cooker', 'Mechanic', 'Deckhand'];
   nationalities = ['USA', 'UK', 'Spain', 'India', 'Canada'];
   currencies = ['USD', 'EUR'];
 
-  constructor(public dialogRef: MatDialogRef<AddCrewDialogComponent>) {}
+  certificateTypes: any[] = []; // Sertifika türleri
+
+  constructor(
+    public dialogRef: MatDialogRef<AddCrewDialogComponent>,
+    private certificateTypeService: CertificateTypeService // Servisi Enjekte Et
+  ) {}
+
+  ngOnInit(): void {
+    // Sertifika türlerini servisten al
+    this.certificateTypes = this.certificateTypeService.getCertificateTypes();
+  }
+
+   addCertificate(): void {
+    this.newCrew.certificates.push({
+      type: '',
+      issueDate: '',
+      expiryDate: '',
+    });
+  }
+
+  removeCertificate(index: number): void {
+    this.newCrew.certificates.splice(index, 1);
+  }
 
   calculateTotalIncome(): void {
     this.newCrew.totalIncome =

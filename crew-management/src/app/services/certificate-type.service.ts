@@ -1,19 +1,30 @@
 import { Injectable } from '@angular/core';
 import { CertificateType } from '../models/certificate-type.model';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CertificateTypeService {
-  private certificateTypes: CertificateType[] = [];
-  private nextId = 1; // ID sayaç
+  private certificateTypesSubject = new BehaviorSubject<any[]>([
+    { id: 1, name: 'Safety Training', description: 'Basic safety training' },
+    { id: 2, name: 'First Aid', description: 'First aid training' },
+    { id: 3, name: 'Fire Fighting', description: 'Fire fighting training' },
+  ]);
+  private nextId = 4;
 
-  getCertificateTypes(): CertificateType[] {
-    return [...this.certificateTypes];
+
+  certificateTypes$: Observable<any[]> = this.certificateTypesSubject.asObservable();
+
+   // Sertifika türlerini almak için
+   getCertificateTypes(): any[] {
+    return this.certificateTypesSubject.value;
   }
 
-  addCertificateType(newType: CertificateType): void {
-    newType.id = this.nextId++;
-    this.certificateTypes.push(newType);
+  // Yeni sertifika türü eklemek için
+  addCertificateType(newType: { name: string; description: string }): void {
+    const currentTypes = this.certificateTypesSubject.value;
+    this.certificateTypesSubject.next([...currentTypes, newType]);
+    console.log(this.certificateTypesSubject);
   }
 }

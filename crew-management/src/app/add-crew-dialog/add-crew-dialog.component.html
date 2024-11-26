@@ -123,11 +123,41 @@ button:hover {
     </mat-form-field>
   </div>
 
-  <!-- Currency -->
+  <!-- Sertifikalar -->
+  <h3>{{ 'CERTIFICATES' }}</h3>
+  <div *ngFor="let cert of newCrew.certificates; let i = index" class="form-row">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>{{ 'CERTIFICATE_TYPE' }}</mat-label>
+      <mat-select [(ngModel)]="cert.type" [ngModelOptions]="{ standalone: true }">
+        <mat-option *ngFor="let type of certificateTypes" [value]="type.name">
+          {{ type.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>{{ 'ISSUE_DATE' }}</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="cert.issueDate" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    
 
-  <!-- Total Income (Read-Only) -->
-  
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>{{ 'EXPIRY_DATE' }}</mat-label>
+      <input matInput [matDatepicker]="picker2" [(ngModel)]="cert.expiryDate" />
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+
+    <button mat-icon-button color="warn" (click)="removeCertificate(i)">
+      Delete
+    </button>
+  </div>
+
+  <button mat-stroked-button color="primary" (click)="addCertificate()">
+    Add Certificate
+  </button>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="cancel()">{{ 'CANCEL'  }}</button>
