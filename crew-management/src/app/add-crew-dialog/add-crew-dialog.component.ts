@@ -12,6 +12,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ChangeDetectorRef } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDateFormats, MAT_DATE_FORMATS } from '@angular/material/core';
 
 @Component({
   selector: 'app-add-crew-dialog',
@@ -31,6 +32,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule
   ],
 })
+
+
 export class AddCrewDialogComponent {
   newCrew = {
     firstName: '',
@@ -43,6 +46,7 @@ export class AddCrewDialogComponent {
     totalIncome: 0,
     certificates: [
       {
+        id: 0,
         type: '',
         issueDate: null,
         expiryDate: null,
@@ -69,21 +73,23 @@ export class AddCrewDialogComponent {
 
   addCertificate(): void {
     console.log('Adding certificate');
+    const maxId = this.newCrew.certificates.reduce((max, cert) => cert.id > max ? cert.id : max, 0);
+
     this.newCrew.certificates.push({
+      id: maxId + 1, // Yeni ID
       type: '',
       issueDate: null,
       expiryDate: null,
     });
-    console.log('Updated certificates:', this.newCrew.certificates);
-  
+
   }
-  
+
   removeCertificate(index: number): void {
     this.newCrew.certificates.splice(index, 1);
   }
 
   calculateTotalIncome(): void {
-    
+
     if (this.newCrew.dailyRate !== null && this.newCrew.daysOnBoard !== null) {
       this.newCrew.totalIncome = this.newCrew.dailyRate * this.newCrew.daysOnBoard;
     } else {

@@ -13,10 +13,11 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-crew-card',
+  standalone: true,
   imports: [
     CommonModule,
     MatTabsModule,
-    TranslateModule, 
+    TranslateModule,
     MatCardModule,
     MatTableModule,
     MatIconModule, // Buraya ekleyin
@@ -25,10 +26,11 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
   templateUrl: './crew-card.component.html',
   styleUrls: ['./crew-card.component.css']
 })
+
 export class CrewCardComponent implements OnInit {
   crew: CrewModel | undefined; // Tayfa verisi
 
-  selectedTabIndex = 0; 
+  selectedTabIndex = 0;
 
   constructor(
     private route: ActivatedRoute, // Route parametrelerini okumak için
@@ -37,7 +39,7 @@ export class CrewCardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    
+
     // Route parametresinden ID'yi al ve tayfa verisini yükle
     const id = this.route.snapshot.paramMap.get('id');
     console.log("hi")
@@ -64,7 +66,7 @@ export class CrewCardComponent implements OnInit {
       queryParamsHandling: 'merge',
     });
   }
-  
+
   goBack(): void {
     // Ana sayfaya geri dön
     this.router.navigate(['/']);

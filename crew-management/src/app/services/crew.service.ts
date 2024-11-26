@@ -128,6 +128,11 @@ export class CrewService {
 
   // Yeni tayfa ekler
   addCrew(newCrew: Crew): void {
+    const maxId = this.crewList.reduce((max, crew) => (crew.id > max ? crew.id : max), 0);
+
+    // Yeni tayfa için ID ata
+    newCrew.id = maxId + 1;
+
     this.crewList.push(newCrew);
   }
 

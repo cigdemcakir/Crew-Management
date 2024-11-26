@@ -10,5 +10,13 @@
   "TOTAL_INCOME": "Total Income",
   "CERTIFICATES": "Certificates",
   "VIEW_CERTIFICATES": "View Certificates",
-  "ACTIONS": "Actions"
+  "ACTIONS": "Actions",
+  "ADD CREW": "Add Crew",
+  "ADD CERTIFICATE TYPE": "Add Certificate Type",
+  "TOTAL INCOME SUMMARY": "Total Income Summary",
+  "DARK MODE": "Dark Mode",
+  "DISCOUNT": "Discount",
+  "ENTER_DISCOUNT": "Enter Discount",
+  "DELETE_CREW_MEMBER": "Delete Crew Member",
+  "DELETE_CONFIRM_MESSAGE": "Are you sure you want to delete this crew member? This action cannot be undone."
 }

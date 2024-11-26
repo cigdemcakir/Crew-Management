@@ -1,14 +1,22 @@
 {
   "LANGUAGE": "Idioma",
-  "FIRST_NAME": "Primeiro Nome",
+  "FIRST_NAME": "Nome",
   "LAST_NAME": "Sobrenome",
   "NATIONALITY": "Nacionalidade",
   "TITLE": "Título",
-  "DAYS_ON_BOARD": "Dias a Bordo",
-  "DAILY_RATE": "Taxa Diária",
+  "DAYS_ON_BOARD": "Dias a bordo",
+  "DAILY_RATE": "Taxa diária",
   "CURRENCY": "Moeda",
-  "TOTAL_INCOME": "Rendimento Total",
+  "TOTAL_INCOME": "Renda total",
   "CERTIFICATES": "Certificados",
-  "VIEW_CERTIFICATES": "Ver Certificados",
-  "ACTIONS": "Ações"
+  "VIEW_CERTIFICATES": "Ver certificados",
+  "ACTIONS": "Ações",
+  "ADD CREW": "Adicionar tripulação",
+  "ADD CERTIFICATE TYPE": "Adicionar tipo de certificado",
+  "TOTAL INCOME SUMMARY": "Resumo da renda total",
+  "DARK MODE": "Modo escuro",
+  "DISCOUNT": "Desconto",
+  "ENTER_DISCOUNT": "Inserir desconto",
+  "DELETE_CREW_MEMBER": "Excluir membro da tripulação",
+  "DELETE_CONFIRM_MESSAGE": "Tem certeza de que deseja excluir este membro da tripulação? Esta ação não pode ser desfeita."
 }

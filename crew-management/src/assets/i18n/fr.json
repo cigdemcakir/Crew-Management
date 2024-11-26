@@ -1,14 +1,22 @@
 {
   "LANGUAGE": "Langue",
   "FIRST_NAME": "Prénom",
-  "LAST_NAME": "Nom",
+  "LAST_NAME": "Nom de famille",
   "NATIONALITY": "Nationalité",
   "TITLE": "Titre",
-  "DAYS_ON_BOARD": "Jours à Bord",
-  "DAILY_RATE": "Taux Journalier",
+  "DAYS_ON_BOARD": "Jours à bord",
+  "DAILY_RATE": "Taux journalier",
   "CURRENCY": "Devise",
-  "TOTAL_INCOME": "Revenu Total",
+  "TOTAL_INCOME": "Revenu total",
   "CERTIFICATES": "Certificats",
-  "VIEW_CERTIFICATES": "Voir les Certificats",
-  "ACTIONS": "Actions"
+  "VIEW_CERTIFICATES": "Voir les certificats",
+  "ACTIONS": "Actes",
+  "ADD CREW": "Ajouter un équipage",
+  "ADD CERTIFICATE TYPE": "Ajouter un type de certificat",
+  "TOTAL INCOME SUMMARY": "Résumé des revenus totaux",
+  "DARK MODE": "Mode sombre",
+  "DISCOUNT": "Remise",
+  "ENTER_DISCOUNT": "Entrer la remise",
+  "DELETE_CREW_MEMBER": "Supprimer un membre d'équipage",
+  "DELETE_CONFIRM_MESSAGE": "Êtes-vous sûr de vouloir supprimer ce membre d'équipage ? Cette action ne peut pas être annulée."
 }
