@@ -216,125 +216,131 @@
 
 
 
-<router-outlet />
-<div style="text-align: right; margin: 10px;">
-  <label>{{ 'LANGUAGE' | translate }}</label>
-  <select id="language" (change)="debugEvent($event)">
-    <option value="en">English</option>
-    <option value="fr">Français</option>
-    <option value="pt">Português</option>
-  </select>
+<router-outlet></router-outlet>
 
 
-</div>
-<button mat-raised-button color="primary" (click)="openAddCrewDialog()">
-  {{ 'ADD_CREW' | translate }}
-</button>
-<div class="grid-container">
- 
-  <table mat-table [dataSource]="crewList" class="mat-elevation-z8">
-    <!-- First Name -->
-    <ng-container matColumnDef="firstName">
-      <th mat-header-cell *matHeaderCellDef> {{ 'FIRST_NAME' | translate }} </th>
-      <td mat-cell *matCellDef="let crew"> {{ crew.firstName }} </td>
-    </ng-container>
+<div *ngIf="isHomeRoute">
+  <div style="text-align: right; margin: 10px;">
+    <label>{{ 'LANGUAGE' | translate }}</label>
+    <select id="language" (change)="debugEvent($event)">
+      <option value="en">English</option>
+      <option value="fr">Français</option>
+      <option value="pt">Português</option>
+    </select>
   
-    <!-- Last Name -->
-    <ng-container matColumnDef="lastName">
-      <th mat-header-cell *matHeaderCellDef> {{ 'LAST_NAME' | translate }} </th>
-      <td mat-cell *matCellDef="let crew"> {{ crew.lastName }} </td>
-    </ng-container>
   
-    <!-- Nationality -->
-    <ng-container matColumnDef="nationality">
-      <th mat-header-cell *matHeaderCellDef> {{ 'NATIONALITY' | translate }} </th>
-      <td mat-cell *matCellDef="let crew"> {{ crew.nationality }} </td>
-    </ng-container>
-  
-    <!-- Days On Board -->
-    <ng-container matColumnDef="daysOnBoard">
-      <th mat-header-cell *matHeaderCellDef> {{ 'DAYS_ON_BOARD' | translate }} </th>
-      <td mat-cell *matCellDef="let crew"> {{ crew.daysOnBoard }} </td>
-    </ng-container>
-  
-    <!-- Daily Rate -->
-    <ng-container matColumnDef="dailyRate">
-      <th mat-header-cell *matHeaderCellDef> {{ 'DAILY_RATE' | translate }} </th>
-      <td mat-cell *matCellDef="let crew"> {{ crew.dailyRate | currency: crew.currency }} </td>
-    </ng-container>
-  
-    <!-- Currency -->
-    <ng-container matColumnDef="currency">
-      <th mat-header-cell *matHeaderCellDef> {{ 'CURRENCY' | translate }} </th>
-      <td mat-cell *matCellDef="let crew"> {{ crew.currency }} </td>
-    </ng-container>
-  
-    <!-- Discount -->
-    <ng-container matColumnDef="discount">
-      <th mat-header-cell *matHeaderCellDef> {{ 'DISCOUNT' | translate }} </th>
-      <td mat-cell *matCellDef="let crew">
-        <input
-           matInput
-           type="number"
-           [(ngModel)]="crew.discount"
-           (input)="applyDiscount(crew)"
-           placeholder="Enter Discount"
-        />
-      </td>
-    </ng-container>
+  </div>
+  <button mat-raised-button color="primary" (click)="openAddCrewDialog()">
+    {{ 'ADD_CREW' | translate }}
+  </button>
+  <div class="grid-container">
+   
+    <table mat-table [dataSource]="crewList" class="mat-elevation-z8">
+      <!-- First Name -->
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef> {{ 'FIRST_NAME' | translate }} </th>
+        <td mat-cell *matCellDef="let crew"> {{ crew.firstName }} </td>
+      </ng-container>
     
-    <!-- Total Income -->
-    <ng-container matColumnDef="totalIncome">
-      <th mat-header-cell *matHeaderCellDef> {{ 'TOTAL_INCOME' | translate }} </th>
-      <td mat-cell *matCellDef="let crew"> {{ crew.totalIncome | currency: crew.currency }} </td>
-    </ng-container>
+      <!-- Last Name -->
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef> {{ 'LAST_NAME' | translate }} </th>
+        <td mat-cell *matCellDef="let crew"> {{ crew.lastName }} </td>
+      </ng-container>
+    
+      <!-- Nationality -->
+      <ng-container matColumnDef="nationality">
+        <th mat-header-cell *matHeaderCellDef> {{ 'NATIONALITY' | translate }} </th>
+        <td mat-cell *matCellDef="let crew"> {{ crew.nationality }} </td>
+      </ng-container>
+    
+      <!-- Days On Board -->
+      <ng-container matColumnDef="daysOnBoard">
+        <th mat-header-cell *matHeaderCellDef> {{ 'DAYS_ON_BOARD' | translate }} </th>
+        <td mat-cell *matCellDef="let crew"> {{ crew.daysOnBoard }} </td>
+      </ng-container>
+    
+      <!-- Daily Rate -->
+      <ng-container matColumnDef="dailyRate">
+        <th mat-header-cell *matHeaderCellDef> {{ 'DAILY_RATE' | translate }} </th>
+        <td mat-cell *matCellDef="let crew"> {{ crew.dailyRate | currency: crew.currency }} </td>
+      </ng-container>
+    
+      <!-- Currency -->
+      <ng-container matColumnDef="currency">
+        <th mat-header-cell *matHeaderCellDef> {{ 'CURRENCY' | translate }} </th>
+        <td mat-cell *matCellDef="let crew"> {{ crew.currency }} </td>
+      </ng-container>
+    
+      <!-- Discount -->
+      <ng-container matColumnDef="discount">
+        <th mat-header-cell *matHeaderCellDef> {{ 'DISCOUNT' | translate }} </th>
+        <td mat-cell *matCellDef="let crew">
+          <input
+             matInput
+             type="number"
+             [(ngModel)]="crew.discount"
+             (input)="applyDiscount(crew)"
+             placeholder="Enter Discount"
+          />
+        </td>
+      </ng-container>
+      
+      <!-- Total Income -->
+      <ng-container matColumnDef="totalIncome">
+        <th mat-header-cell *matHeaderCellDef> {{ 'TOTAL_INCOME' | translate }} </th>
+        <td mat-cell *matCellDef="let crew"> {{ crew.totalIncome | currency: crew.currency }} </td>
+      </ng-container>
+    
+      <!-- Certificates -->
+      <ng-container matColumnDef="certificates">
+        <th mat-header-cell *matHeaderCellDef> {{ 'CERTIFICATES' | translate }} </th>
+        <td mat-cell *matCellDef="let crew">
+          <button mat-button color="accent" >
+            {{ 'VIEW_CERTIFICATES' | translate }}
+          </button>
+        </td>
+      </ng-container>
+    
+      <!-- Actions -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> {{ 'ACTIONS' | translate }} </th>
+        <td mat-cell *matCellDef="let crew">
+          <!-- Card Page Link -->
+          <button mat-icon-button color="primary" [routerLink]="['/crew-card', crew.id]">
+            <mat-icon>open_in_new</mat-icon>
+          </button>
+    
+          <!-- Edit Crew (Popup Açılır) -->
+          <button mat-icon-button color="accent" (click)="openEditDialog(crew)">
+            <mat-icon>edit</mat-icon>
+          </button>
+    
+          <!-- Delete Crew -->
+          <button mat-icon-button color="warn" (click)="deleteCrew(crew.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+    
+      <!-- Header ve Satır Tanımları -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+   
+  </div>
   
-    <!-- Certificates -->
-    <ng-container matColumnDef="certificates">
-      <th mat-header-cell *matHeaderCellDef> {{ 'CERTIFICATES' | translate }} </th>
-      <td mat-cell *matCellDef="let crew">
-        <button mat-button color="accent" >
-          {{ 'VIEW_CERTIFICATES' | translate }}
-        </button>
-      </td>
-    </ng-container>
-  
-    <!-- Actions -->
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef> {{ 'ACTIONS' | translate }} </th>
-      <td mat-cell *matCellDef="let crew">
-        <!-- Card Page Link -->
-        <button mat-icon-button color="primary" >
-          <mat-icon>open_in_new</mat-icon>
-        </button>
-  
-        <!-- Edit Crew (Popup Açılır) -->
-        <button mat-icon-button color="accent" (click)="openEditDialog(crew)">
-          <mat-icon>edit</mat-icon>
-        </button>
-  
-        <!-- Delete Crew -->
-        <button mat-icon-button color="warn" (click)="deleteCrew(crew.id)">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </td>
-    </ng-container>
-  
-    <!-- Header ve Satır Tanımları -->
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
- 
+  <div class="total-income-summary-container">
+    <h3>{{ 'TOTAL INCOME SUMMARY' | translate }}</h3>
+    <ul>
+      <li *ngFor="let currency of objectKeys(totalIncomeSummary)">
+        {{ currency }}: {{ totalIncomeSummary[currency] | currency: currency }}
+      </li>
+    </ul>
+  </div>
+
 </div>
 
-<div class="total-income-summary-container">
-  <h3>{{ 'TOTAL INCOME SUMMARY' | translate }}</h3>
-  <ul>
-    <li *ngFor="let currency of objectKeys(totalIncomeSummary)">
-      {{ currency }}: {{ totalIncomeSummary[currency] | currency: currency }}
-    </li>
-  </ul>
-</div>
 
 
 

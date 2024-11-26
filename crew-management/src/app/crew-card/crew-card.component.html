@@ -1,0 +1,36 @@
+<div class="crew-card-container">
+    <!-- Geri Butonu -->
+    <button mat-raised-button color="primary" (click)="goBack()">
+      {{ 'BACK' | translate }}
+    </button>
+  
+    <!-- Başlık -->
+    <h2>{{ 'CREW_DETAILS' | translate }}</h2>
+  
+    <!-- Tayfa Bilgileri -->
+    <div *ngIf="crew; else noData">
+      <p><strong>{{ 'FIRST_NAME' | translate }}:</strong> {{ crew.firstName }}</p>
+      <p><strong>{{ 'LAST_NAME' | translate }}:</strong> {{ crew.lastName }}</p>
+      <p><strong>{{ 'TITLE' | translate }}:</strong> {{ crew.title }}</p>
+      <p><strong>{{ 'NATIONALITY' | translate }}:</strong> {{ crew.nationality }}</p>
+      <p><strong>{{ 'DAYS_ON_BOARD' | translate }}:</strong> {{ crew.daysOnBoard }}</p>
+      <p><strong>{{ 'DAILY_RATE' | translate }}:</strong> {{ crew.dailyRate }}</p>
+      <p><strong>{{ 'CURRENCY' | translate }}:</strong> {{ crew.currency }}</p>
+      <p><strong>{{ 'TOTAL_INCOME' | translate }}:</strong> {{ crew.totalIncome }}</p>
+  
+      <!-- Sertifikalar -->
+      <h3>{{ 'CERTIFICATES' | translate }}</h3>
+      <ul>
+        <li *ngFor="let cert of crew.certificates">
+          {{ cert.type }} - {{ 'ISSUE_DATE' | translate }}: {{ cert.issueDate | date }} /
+          {{ 'EXPIRY_DATE' | translate }}: {{ cert.expiryDate | date }}
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Verinin olmadığı durum -->
+    <ng-template #noData>
+      <p>{{ 'NO_CREW_FOUND' | translate }}</p>
+    </ng-template>
+  </div>
+  
