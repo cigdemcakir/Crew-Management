@@ -231,7 +231,10 @@
   
   </div>
   <button mat-raised-button color="primary" (click)="openAddCrewDialog()">
-    {{ 'ADD_CREW' | translate }}
+    {{ 'ADD CREW' | translate }}
+  </button>
+  <button mat-raised-button color="primary" [routerLink]="'/add-certificate-type'">
+    {{ 'ADD CERTIFICATE TYPE' | translate }}
   </button>
   <div class="grid-container">
    
@@ -296,9 +299,13 @@
       <ng-container matColumnDef="certificates">
         <th mat-header-cell *matHeaderCellDef> {{ 'CERTIFICATES' | translate }} </th>
         <td mat-cell *matCellDef="let crew">
-          <button mat-button color="accent" >
-            {{ 'VIEW_CERTIFICATES' | translate }}
-          </button>
+          <button 
+          mat-button 
+          color="accent" 
+          [routerLink]="['/crew-card', crew.id]" 
+          [queryParams]="{ tab: 'certificates' }">
+          {{ 'VIEW_CERTIFICATES' | translate }}
+        </button>
         </td>
       </ng-container>
     

@@ -1,0 +1,30 @@
+<div class="form-container">
+    <h2>{{ 'ADD CERTIFICATE TYPE' | translate }}</h2>
+    <form [formGroup]="certificateTypeForm">
+      <!-- Name Input -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'NAME' | translate }}</mat-label>
+        <input matInput formControlName="name" placeholder="{{ 'Enter Name' | translate }}" />
+        <mat-error *ngIf="certificateTypeForm.get('name')?.hasError('required')">
+          {{ 'NAME_REQUIRED' | translate }}
+        </mat-error>
+      </mat-form-field>
+  
+      <!-- Description Input -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'DESCRIPTION' | translate }}</mat-label>
+        <textarea matInput formControlName="description" placeholder="{{ 'Enter Description' | translate }}"></textarea>
+      </mat-form-field>
+  
+      <!-- Buttons -->
+      <div class="button-group">
+        <button mat-raised-button color="primary" (click)="onSave()">
+          {{ 'SAVE' | translate }}
+        </button>
+        <button mat-stroked-button color="warn" (click)="onCancel()">
+          {{ 'CANCEL' | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
+  

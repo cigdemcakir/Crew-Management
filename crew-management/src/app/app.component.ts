@@ -89,12 +89,13 @@ export class AppComponent {
 
   constructor(private router: Router,private crewService: CrewService,private dialog: MatDialog, private translate: TranslateService) {
     // Varsayılan dili ayarlayın
-    this.translate.setDefaultLang('en');
-    this.translate.use('en'); // İngilizce ile başlat
-    this.loadCrewList(); // Tayfa listesini yükle
     this.router.events.subscribe(() => {
       this.isHomeRoute = this.router.url === '/';
     });
+    this.translate.setDefaultLang('en');
+    this.translate.use('en'); // İngilizce ile başlat
+    this.loadCrewList(); // Tayfa listesini yükle
+   
   }
 
   loadCrewList(): void {
