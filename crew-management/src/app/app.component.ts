@@ -17,7 +17,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { AddCrewDialogComponent } from './add-crew-dialog/add-crew-dialog.component';
 import { CrewService } from './services/crew.service';
-
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -62,7 +63,9 @@ interface Certificate {
     ReactiveFormsModule, // Form işlevselliği için gerekli
     MatFormFieldModule,
     MatInputModule,
-    RouterModule
+    RouterModule,
+    MatSlideToggleModule,
+    ConfirmDialogComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
@@ -73,6 +76,7 @@ export class AppComponent {
   isHomeRoute: boolean = true; 
   objectKeys = Object.keys; 
   crewList: Crew[] = []; // Tayfa listesi
+  isDarkMode: boolean = false; 
 
   displayedColumns: string[] = [
     'firstName',
@@ -104,7 +108,6 @@ export class AppComponent {
   }
 
   debugEvent(event: Event): void {
-    console.log(event);
     const value = (event.target as HTMLSelectElement)?.value;
     this.switchLanguage((value as string) || null);
   }
@@ -112,19 +115,28 @@ export class AppComponent {
   switchLanguage(language: string | null): void {
     if (language) {
       this.translate.use(language);
-      console.log(`Language switched to: ${language}`);
     } else {
       console.error('Invalid language selection');
     }
   }
 
   deleteCrew(id: number): void {
-    const confirmation = confirm('Are you sure you want to delete this crew member?');
-    if (confirmation) {
-       this.crewService.deleteCrew(id); // Servis üzerinden sil
-       this.loadCrewList(); // Listeyi yeniden yükle
-    }
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '400px',
+      data: {
+        title: 'Delete Crew Member',
+        message: 'Are you sure you want to delete this crew member? This action cannot be undone.'
+      }
+    });
+  
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.crewService.deleteCrew(id); // Servis ile silme işlemi
+        this.loadCrewList(); // Listeyi güncelle
+      }
+    });
   }
+  
 
   openEditDialog(crew: Crew): void {
     const dialogRef = this.dialog.open(EditCrewDialogComponent, {
@@ -187,6 +199,17 @@ export class AppComponent {
   updateTotalIncome(crew: Crew): void {
     this.updateTotalIncomeSummary(); // Toplam özeti güncelle
   }
-
+  toggleTheme(isChecked: boolean): void {
+    this.isDarkMode = isChecked;
+  
+    if (this.isDarkMode) {
+      document.body.classList.add('dark-theme');
+      document.body.classList.remove('light-theme');
+    } else {
+      document.body.classList.add('light-theme');
+      document.body.classList.remove('dark-theme');
+    }
+  }
+  
   protected readonly HTMLSelectElement = HTMLSelectElement;
 }

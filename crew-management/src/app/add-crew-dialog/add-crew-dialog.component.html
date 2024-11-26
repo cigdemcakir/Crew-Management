@@ -1,165 +1,131 @@
+<h2 class="popup-title">Add Crew</h2>
+<form #crewForm="ngForm" (ngSubmit)="save(crewForm)">
+  <div class="popup-content">
+    <!-- First Name and Last Name -->
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input
+          matInput
+          [(ngModel)]="newCrew.firstName"
+          name="firstName"
+          required
+          #firstName="ngModel"
+        />
+        <mat-error *ngIf="firstName.invalid && firstName.touched">First Name is required</mat-error>
+      </mat-form-field>
 
-<style>
-  .mat-dialog-container {
-  width: 700px;
-  max-width: 90%;
-  border-radius: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background: linear-gradient(135deg, #ffffff, #f8f9fa);
-  padding: 24px;
-}
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input
+          matInput
+          [(ngModel)]="newCrew.lastName"
+          name="lastName"
+          required
+          #lastName="ngModel"
+        />
+        <mat-error *ngIf="lastName.invalid && lastName.touched">Last Name is required</mat-error>
+      </mat-form-field>
+    </div>
 
-.popup-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 16px;
-  text-align: center;
-}
+    <!-- Title and Nationality -->
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <mat-select [(ngModel)]="newCrew.title" name="title" required #title="ngModel">
+          <mat-option *ngFor="let title of titles" [value]="title">
+            {{ title }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="title.invalid && title.touched">Title is required</mat-error>
+      </mat-form-field>
 
-.popup-content {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
+      <mat-form-field appearance="outline">
+        <mat-label>Nationality</mat-label>
+        <mat-select [(ngModel)]="newCrew.nationality" name="nationality" required #nationality="ngModel">
+          <mat-option *ngFor="let nationality of nationalities" [value]="nationality">
+            {{ nationality }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="nationality.invalid && nationality.touched">Nationality is required</mat-error>
+      </mat-form-field>
+    </div>
 
-.form-row {
-  display: flex;
-  gap: 16px;
-  justify-content: space-between;
-}
+    <!-- Days On Board and Daily Rate -->
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Currency</mat-label>
+        <mat-select [(ngModel)]="newCrew.currency" name="currency" required #currency="ngModel">
+          <mat-option *ngFor="let currency of currencies" [value]="currency">
+            {{ currency }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="currency.invalid && currency.touched">Currency is required</mat-error>
+      </mat-form-field>
 
-mat-form-field {
-  flex: 1;
-  background: #fff;
-  border-radius: 8px;
-}
+      <mat-form-field appearance="outline">
+        <mat-label>Days on Board</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="newCrew.daysOnBoard"
+          name="daysOnBoard"
+          required
+          #daysOnBoard="ngModel"
+        />
+        <mat-error *ngIf="daysOnBoard.invalid && daysOnBoard.touched">Days on Board is required</mat-error>
+      </mat-form-field>
 
-mat-dialog-actions {
-  margin-top: 16px;
-  justify-content: flex-end;
-}
+      <mat-form-field appearance="outline">
+        <mat-label>Daily Rate</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="newCrew.dailyRate"
+          name="dailyRate"
+          required
+          #dailyRate="ngModel"
+        />
+        <mat-error *ngIf="dailyRate.invalid && dailyRate.touched">Daily Rate is required</mat-error>
+      </mat-form-field>
+    </div>
 
-mat-form-field {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+    <!-- Certificates -->
+    <h3>Certificates</h3>
+    <div *ngFor="let cert of newCrew.certificates; let i = index" class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Certificate Type</mat-label>
+        <mat-select [(ngModel)]="cert.type">
+          <mat-option *ngFor="let type of certificateTypes" [value]="type.name">
+            {{ type.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-mat-form-field:hover {
-  transform: scale(1.02);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+      <mat-form-field appearance="outline">
+        <mat-label>Issue Date</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="cert.issueDate" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
 
-button {
-  transition: background 0.3s ease, box-shadow 0.2s ease;
-}
+      <mat-form-field appearance="outline">
+        <mat-label>Expiry Date</mat-label>
+        <input matInput [matDatepicker]="picker2" [(ngModel)]="cert.expiryDate" />
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
 
-button:hover {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
+      <button mat-icon-button color="warn" (click)="removeCertificate(i)">
+        Delete
+      </button>
+    </div>
 
-
-</style>
-
-<h2 mat-dialog-title>{{ 'ADD CREW' }}</h2>
-<div mat-dialog-content>
-  <!-- First Name and Last Name -->
-  <div class="form-row">
-    <mat-form-field appearance="outline">
-      <mat-label>{{ 'FIRST_NAME'  }}</mat-label>
-      <input matInput [(ngModel)]="newCrew.firstName" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>{{ 'LAST_NAME'  }}</mat-label>
-      <input matInput [(ngModel)]="newCrew.lastName" />
-    </mat-form-field>
+    <button class="add-certificate-button" (click)="addCertificate()">Add Certificate</button>
   </div>
 
-  <div class="form-row">
-    <mat-form-field appearance="outline">
-      <mat-label>{{ 'TITLE'  }}</mat-label>
-      <mat-select [(ngModel)]="newCrew.title">
-        <mat-option *ngFor="let title of titles" [value]="title">
-          {{ title }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-    <!-- Nationality -->
-    <mat-form-field appearance="outline">
-      <mat-label>{{ 'NATIONALITY'  }}</mat-label>
-      <mat-select [(ngModel)]="newCrew.nationality">
-        <mat-option *ngFor="let nationality of nationalities" [value]="nationality">
-          {{ nationality }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>{{ 'CURRENCY'  }}</mat-label>
-      <mat-select [(ngModel)]="newCrew.currency">
-        <mat-option *ngFor="let currency of currencies" [value]="currency">
-          {{ currency }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-
+  <div mat-dialog-actions>
+    <button mat-stroked-button color="warn" (click)="cancel()">Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="!crewForm.valid" type="submit">Save</button>
   </div>
-  
-  <!-- Days On Board and Daily Rate -->
-  <div class="form-row">
-    <mat-form-field appearance="outline">
-      <mat-label>{{ 'DAYS_ON_BOARD'  }}</mat-label>
-      <input matInput type="number" [(ngModel)]="newCrew.daysOnBoard" (input)="calculateTotalIncome()" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>{{ 'DAILY_RATE'  }}</mat-label>
-      <input matInput type="number" [(ngModel)]="newCrew.dailyRate" (input)="calculateTotalIncome()" />
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>{{ 'TOTAL_INCOME'  }}</mat-label>
-      <input matInput type="number" [(ngModel)]="newCrew.totalIncome" readonly />
-    </mat-form-field>
-  </div>
-
-  <!-- Sertifikalar -->
-  <h3>{{ 'CERTIFICATES' }}</h3>
-  <div *ngFor="let cert of newCrew.certificates; let i = index" class="form-row">
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>{{ 'CERTIFICATE_TYPE' }}</mat-label>
-      <mat-select [(ngModel)]="cert.type" [ngModelOptions]="{ standalone: true }">
-        <mat-option *ngFor="let type of certificateTypes" [value]="type.name">
-          {{ type.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>{{ 'ISSUE_DATE' }}</mat-label>
-      <input matInput [matDatepicker]="picker" [(ngModel)]="cert.issueDate" />
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-    
-
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>{{ 'EXPIRY_DATE' }}</mat-label>
-      <input matInput [matDatepicker]="picker2" [(ngModel)]="cert.expiryDate" />
-      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-      <mat-datepicker #picker2></mat-datepicker>
-    </mat-form-field>
-
-    <button mat-icon-button color="warn" (click)="removeCertificate(i)">
-      Delete
-    </button>
-  </div>
-
-  <button mat-stroked-button color="primary" (click)="addCertificate()">
-    Add Certificate
-  </button>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="cancel()">{{ 'CANCEL'  }}</button>
-  <button mat-raised-button color="primary" (click)="save()">{{ 'SAVE'  }}</button>
-</div>
+</form>

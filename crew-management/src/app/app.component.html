@@ -199,6 +199,7 @@
   margin: 5px 0;
 }
 
+
   @media screen and (max-width: 650px) {
     .content {
       flex-direction: column;
@@ -219,23 +220,30 @@
 <router-outlet></router-outlet>
 
 
-<div *ngIf="isHomeRoute">
-  <div style="text-align: right; margin: 10px;">
+<div *ngIf="isHomeRoute" >
+ 
+  <div style="display: flex; justify-content: flex-end; align-items: center; gap: 20px; margin: 10px;">
     <label>{{ 'LANGUAGE' | translate }}</label>
     <select id="language" (change)="debugEvent($event)">
       <option value="en">English</option>
       <option value="fr">Français</option>
       <option value="pt">Português</option>
     </select>
-  
-  
+    <mat-slide-toggle (change)="toggleTheme($event.checked)">
+      Dark Mode
+    </mat-slide-toggle>
   </div>
-  <button mat-raised-button color="primary" (click)="openAddCrewDialog()">
-    {{ 'ADD CREW' | translate }}
-  </button>
-  <button mat-raised-button color="primary" [routerLink]="'/add-certificate-type'">
-    {{ 'ADD CERTIFICATE TYPE' | translate }}
-  </button>
+  
+  <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin: 10px;">
+    <button mat-raised-button color="primary" (click)="openAddCrewDialog()">
+      {{ 'ADD CREW' | translate }}
+    </button>
+    <button mat-raised-button color="primary" [routerLink]="'/add-certificate-type'">
+      {{ 'ADD CERTIFICATE TYPE' | translate }}
+    </button>
+  </div>
+ 
+
   <div class="grid-container">
    
     <table mat-table [dataSource]="crewList" class="mat-elevation-z8">

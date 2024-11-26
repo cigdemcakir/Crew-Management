@@ -1,0 +1,81 @@
+.mat-dialog-container {
+    width: 700px;
+    max-width: 90%;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    background: #ffffff;
+    padding: 24px;
+    color: #333;
+  }
+  
+  .popup-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+  }
+  
+  .popup-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  mat-form-field {
+    flex: 1;
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 10px;
+  }
+  
+  mat-dialog-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  button {
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 8px;
+  }
+  
+  button:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  .mat-raised-button {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .mat-stroked-button {
+    color: #333;
+    border-color: #ddd;
+  }
+  
+  .add-certificate-button {
+    margin: 10px 0;
+    background-color: #2196f3;
+    color: white;
+    border-radius: 8px;
+    padding: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .add-certificate-button:hover {
+    background-color: #1976d2;
+  }
+  

@@ -1,4 +1,64 @@
-/* You can add global styles to this file, and also import other style files */
+/* Varsayılan Tema */
+body {
+  background-color: #ffffff; /* Açık tema arka planı */
+  color: #000000; /* Açık tema yazı rengi */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* Karanlık Tema */
+body.dark-theme {
+  background-color: #121212; /* Koyu tema arka planı */
+  color: #ffffff; /* Koyu tema yazı rengi */
+}
+
+/* Grid için Tema */
+table {
+  background-color: inherit;
+  color: inherit;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Materyal Kartlar */
+mat-card {
+  background-color: #ffffff; /* Açık tema kart rengi */
+  color: #000000; /* Açık tema yazı rengi */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-theme mat-card {
+  background-color: #1e1e1e; /* Koyu tema kart rengi */
+  color: #ffffff; /* Koyu tema yazı rengi */
+}
+
+/* Butonlar */
+button {
+  background-color: #f5f5f5; /* Açık tema buton rengi */
+  color: #000000;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-theme button {
+  background-color: #333333; /* Koyu tema buton rengi */
+  color: #ffffff;
+}
+
+/* Diğer Bölümler */
+mat-form-field {
+  background-color: inherit;
+  color: inherit;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-theme mat-form-field {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+.dark-theme .mat-dialog-container {
+  background-color: #333;
+  color: #fff;
+}
+
+.light-theme .mat-dialog-container {
+  background-color: #fff;
+  color: #000;
+}

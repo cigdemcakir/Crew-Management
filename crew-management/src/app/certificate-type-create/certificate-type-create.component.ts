@@ -40,6 +40,7 @@ export class CertificateTypeCreateComponent {
   onSave(): void {
     if (this.certificateTypeForm.valid) {
       this.certificateTypeService.addCertificateType(this.certificateTypeForm.value);
+
       this.router.navigate(['/']); // Anasayfaya yönlendir
     }
   }
