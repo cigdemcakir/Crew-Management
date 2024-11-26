@@ -46,19 +46,19 @@
               <!-- Certificate Type Column -->
               <ng-container matColumnDef="type">
                 <th mat-header-cell *matHeaderCellDef>{{ 'TYPE' | translate }}</th>
-                <td mat-cell *matCellDef="let cert">{{ cert.type }}</td>
+                <td mat-cell *matCellDef="let cert">{{ cert.type  }}</td>
               </ng-container>
 
               <!-- Issue Date Column -->
               <ng-container matColumnDef="issueDate">
                 <th mat-header-cell *matHeaderCellDef>{{ 'ISSUE_DATE' | translate }}</th>
-                <td mat-cell *matCellDef="let cert">{{ cert.issueDate | date }}</td>
+                <td mat-cell *matCellDef="let cert">{{ cert.issueDate | date:'yyyy-MM-dd' }}</td>
               </ng-container>
 
               <!-- Expiry Date Column -->
               <ng-container matColumnDef="expiryDate">
                 <th mat-header-cell *matHeaderCellDef>{{ 'EXPIRY_DATE' | translate }}</th>
-                <td mat-cell *matCellDef="let cert">{{ cert.expiryDate | date }}</td>
+                <td mat-cell *matCellDef="let cert">{{ cert.expiryDate | date:'yyyy-MM-dd' }}</td>
               </ng-container>
 
               <tr mat-header-row *matHeaderRowDef="['type', 'issueDate', 'expiryDate']"></tr>

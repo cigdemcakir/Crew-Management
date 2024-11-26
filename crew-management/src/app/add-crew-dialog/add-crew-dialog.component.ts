@@ -10,6 +10,8 @@ import { CertificateType } from '../models/certificate-type.model';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { ChangeDetectorRef } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-add-crew-dialog',
@@ -26,6 +28,7 @@ import { FormsModule, NgForm } from '@angular/forms';
     MatOptionModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatIconModule
   ],
 })
 export class AddCrewDialogComponent {
@@ -38,7 +41,13 @@ export class AddCrewDialogComponent {
     daysOnBoard: null as number | null,
     dailyRate: null as number | null,
     totalIncome: 0,
-    certificates: [] as { type: string; issueDate: string; expiryDate: string }[],
+    certificates: [
+      {
+        type: '',
+        issueDate: null,
+        expiryDate: null,
+      },
+    ], // Varsayılan
   };
 
   titles = ['Captain', 'Engineer', 'Cooker', 'Mechanic', 'Deckhand'];
@@ -49,7 +58,8 @@ export class AddCrewDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<AddCrewDialogComponent>,
-    private certificateTypeService: CertificateTypeService // Servisi Enjekte Et
+    private certificateTypeService: CertificateTypeService, // Servisi Enjekte Et
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -57,14 +67,17 @@ export class AddCrewDialogComponent {
     this.certificateTypes = this.certificateTypeService.getCertificateTypes();
   }
 
-   addCertificate(): void {
+  addCertificate(): void {
+    console.log('Adding certificate');
     this.newCrew.certificates.push({
       type: '',
-      issueDate: '',
-      expiryDate: '',
+      issueDate: null,
+      expiryDate: null,
     });
+    console.log('Updated certificates:', this.newCrew.certificates);
+  
   }
-
+  
   removeCertificate(index: number): void {
     this.newCrew.certificates.splice(index, 1);
   }
@@ -79,6 +92,7 @@ export class AddCrewDialogComponent {
   }
 
   save(form: NgForm): void {
+    console.log(this.newCrew)
     this.calculateTotalIncome();
     if (form.valid) {
       this.dialogRef.close(this.newCrew);

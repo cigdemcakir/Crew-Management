@@ -121,7 +121,15 @@
       </button>
     </div>
 
-    <button class="add-certificate-button" (click)="addCertificate()">Add Certificate</button>
+    <button
+  mat-fab
+  color="primary"
+  class="add-certificate-button"
+  (click)="addCertificate()"
+  type="button"
+>
+  <mat-icon>add</mat-icon>
+</button>
   </div>
 
   <div mat-dialog-actions>

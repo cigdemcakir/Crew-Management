@@ -37,6 +37,7 @@ export class CrewCardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    
     // Route parametresinden ID'yi al ve tayfa verisini yükle
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
