@@ -8,8 +8,8 @@
 
   <div class="toolbar-center">
     <button mat-raised-button (click)="onHome()">{{ 'NAVBAR.HOME' | translate }}</button>
-    <button mat-raised-button routerLink="/about">{{ 'NAVBAR.ABOUT' | translate }}</button>
-    <button mat-raised-button routerLink="/contact">{{ 'NAVBAR.CONTACT' | translate }}</button>
+    <button mat-raised-button (click)="onAbout()">{{ 'NAVBAR.ABOUT' | translate }}</button>
+    <button mat-raised-button (click)="onContact()">{{ 'NAVBAR.CONTACT' | translate }}</button>
   </div>
 
   <div class="toolbar-right">

@@ -1,0 +1,53 @@
+.about-card {
+  max-width: 900px;
+  padding: 2rem;
+  background-color: #ffffff;
+  color: #333;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  margin: 100px auto;
+}
+
+.about-title {
+  font-size: 2rem;
+  text-align: center;
+  color: #6200ee;
+  margin-bottom: 1.5rem;
+}
+
+.project-description {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  margin-top: 2rem;
+  color: #333;
+  text-align: center;
+}
+
+.feature {
+  margin-bottom: 1.5rem;
+}
+
+.feature h3 {
+  font-size: 1.4rem;
+  color: #42a5f5;
+  margin-bottom: 0.5rem;
+}
+
+.feature p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.feature ul {
+  padding-left: 1.5rem;
+  list-style: disc;
+}
+
+.feature ul li {
+  margin-bottom: 0.5rem;
+}

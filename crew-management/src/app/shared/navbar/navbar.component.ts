@@ -37,7 +37,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 export class NavbarComponent {
   isDarkMode: boolean = false;
   selectedLanguage: string = 'en';
-  isDarkModeVisible: boolean = true;
 
   constructor(private router: Router, private translate: TranslateService) {
     this.translate.setDefaultLang(this.selectedLanguage);
@@ -62,6 +61,12 @@ export class NavbarComponent {
 
   onHome(): void {
     this.router.navigate(['/']);
+  }
+  onAbout(): void {
+    this.router.navigate(['/about']);
+  }
+  onContact(): void {
+    this.router.navigate(['/contact']);
   }
 
 }

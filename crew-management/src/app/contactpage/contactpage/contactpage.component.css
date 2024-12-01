@@ -1,0 +1,83 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f3e7ff, #d9a7ff); /* Optional background gradient */
+  font-family: Arial, sans-serif;
+
+}
+
+.contact-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%; /* Ensure the container takes the full width */
+  margin-top: 200px;
+}
+
+.contact-card {
+  max-width: 600px;
+  width: 100%; /* Full width within the max-width */
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  text-align: center; /* Center text inside the card */
+}
+
+.contact-title {
+  font-size: 1.8rem;
+  color: #673ab7;
+  margin-bottom: 20px;
+}
+
+.contact-description {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.contact-info {
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 1.2rem;
+  color: #673ab7;
+  margin-bottom: 10px;
+}
+
+.contact-info p {
+  margin: 5px 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: #673ab7;
+}
+
+.social-link:hover {
+  color: #512da8;
+  text-decoration: underline;
+}
+
+mat-icon {
+  font-size: 1.5rem;
+}
