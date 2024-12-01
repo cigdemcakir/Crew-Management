@@ -18,5 +18,23 @@
   "DISCOUNT": "Desconto",
   "ENTER_DISCOUNT": "Inserir desconto",
   "DELETE_CREW_MEMBER": "Excluir membro da tripulação",
-  "DELETE_CONFIRM_MESSAGE": "Tem certeza de que deseja excluir este membro da tripulação? Esta ação não pode ser desfeita."
+  "DELETE_CONFIRM_MESSAGE": "Tem certeza de que deseja excluir este membro da tripulação? Esta ação não pode ser desfeita.",
+  "ADD_CERTIFICATE_TYPE": "Adicionar tipo de certificado",
+  "NAME": "Nome",
+  "ENTER_NAME": "Digite o nome",
+  "NAME_REQUIRED": "O nome é obrigatório.",
+  "NAME_TOO_SHORT": "O nome deve ter pelo menos 3 caracteres.",
+  "NAME_TOO_LONG": "O nome não pode ter mais de 50 caracteres.",
+  "DESCRIPTION": "Descrição",
+  "ENTER_DESCRIPTION": "Digite a descrição",
+  "SAVE": "Salvar",
+  "CANCEL": "Cancelar",
+  "NAVBAR": {
+    "TITLE": "Sistema de Gestão de Tripulação",
+    "HOME": "Início",
+    "ABOUT": "Sobre",
+    "CONTACT": "Contato",
+    "LANGUAGE": "Idioma",
+    "DARK_MODE": "Modo Escuro"
+  }
 }

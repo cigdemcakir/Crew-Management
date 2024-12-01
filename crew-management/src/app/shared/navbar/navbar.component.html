@@ -1,0 +1,31 @@
+<router-outlet></router-outlet>
+
+<mat-toolbar color="primary">
+  <div class="toolbar-logo">
+    <img src="assets/logo.svg" alt="Logo" />
+    <span>{{ 'NAVBAR.TITLE' | translate }}</span>
+  </div>
+
+  <div class="toolbar-center">
+    <button mat-raised-button (click)="onHome()">{{ 'NAVBAR.HOME' | translate }}</button>
+    <button mat-raised-button routerLink="/about">{{ 'NAVBAR.ABOUT' | translate }}</button>
+    <button mat-raised-button routerLink="/contact">{{ 'NAVBAR.CONTACT' | translate }}</button>
+  </div>
+
+  <div class="toolbar-right">
+    <div class="language-select-container">
+      <mat-form-field appearance="fill" class="language-select">
+        <mat-select [(ngModel)]="selectedLanguage" (selectionChange)="switchLanguage($event.value)">
+          <mat-option value="en">English</mat-option>
+          <mat-option value="fr">French</mat-option>
+          <mat-option value="pt">Portuguese</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="dark-mode-container">
+      <span class="label">{{ 'NAVBAR.DARK_MODE' | translate }}</span>
+      <mat-slide-toggle [(ngModel)]="isDarkMode" (change)="toggleTheme($event.checked)"></mat-slide-toggle>
+    </div>
+  </div>
+</mat-toolbar>
+

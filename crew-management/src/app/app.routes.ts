@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { CrewCardComponent } from './crew-card/crew-card.component';
-import { CertificateTypeCreateComponent } from './certificate-type-create/certificate-type-create.component';
+import { CrewCardComponent } from './crew/crew-card/crew-card.component';
+import { CertificateTypeCreateComponent } from './certificate/certificate-type-create/certificate-type-create.component';
 import { AppComponent } from './app.component';
 
 export const routes: Routes = [

@@ -18,5 +18,24 @@
   "DISCOUNT": "Discount",
   "ENTER_DISCOUNT": "Enter Discount",
   "DELETE_CREW_MEMBER": "Delete Crew Member",
-  "DELETE_CONFIRM_MESSAGE": "Are you sure you want to delete this crew member? This action cannot be undone."
+  "DELETE_CONFIRM_MESSAGE": "Are you sure you want to delete this crew member? This action cannot be undone.",
+  "ADD_CERTIFICATE_TYPE": "Add Certificate Type",
+  "NAME": "Name",
+  "ENTER_NAME": "Enter Name",
+  "NAME_REQUIRED": "Name is required.",
+  "NAME_TOO_SHORT": "Name must be at least 3 characters long.",
+  "NAME_TOO_LONG": "Name cannot exceed 50 characters.",
+  "DESCRIPTION": "Description",
+  "ENTER_DESCRIPTION": "Enter Description",
+  "SAVE": "Save",
+  "CANCEL": "Cancel",
+  "NAVBAR": {
+    "TITLE": "Crew Management System",
+    "HOME": "Home",
+    "ABOUT": "About",
+    "CONTACT": "Contact",
+    "LANGUAGE": "Language",
+    "DARK_MODE": "Dark Mode"
+  }
+
 }

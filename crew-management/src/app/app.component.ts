@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {RouterOutlet, Router} from '@angular/router';
-import { RouterModule } from '@angular/router'; 
+import { RouterModule } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,15 +10,16 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {HttpClient} from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
-import { EditCrewDialogComponent } from './edit-crew-dialog/edit-crew-dialog.component';
+import { EditCrewDialogComponent } from './crew/edit-crew-dialog/edit-crew-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import { AddCrewDialogComponent } from './add-crew-dialog/add-crew-dialog.component';
+import { AddCrewDialogComponent } from './crew/add-crew-dialog/add-crew-dialog.component';
 import { CrewService } from './services/crew.service';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
+import {NavbarComponent} from './shared/navbar/navbar.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -65,7 +66,8 @@ interface Certificate {
     MatInputModule,
     RouterModule,
     MatSlideToggleModule,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    NavbarComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
@@ -73,10 +75,10 @@ interface Certificate {
 
 export class AppComponent {
   title = 'crew-management';
-  isHomeRoute: boolean = true; 
-  objectKeys = Object.keys; 
+  isHomeRoute: boolean = true;
+  objectKeys = Object.keys;
   crewList: Crew[] = []; // Tayfa listesi
-  isDarkMode: boolean = false; 
+  isDarkMode: boolean = false;
 
   displayedColumns: string[] = [
     'firstName',
@@ -85,7 +87,7 @@ export class AppComponent {
     'daysOnBoard',
     'dailyRate',
     'currency',
-    'discount', 
+    'discount',
     'totalIncome',
     'certificates',
     'actions'
@@ -99,7 +101,7 @@ export class AppComponent {
     this.translate.setDefaultLang('en');
     this.translate.use('en'); // İngilizce ile başlat
     this.loadCrewList(); // Tayfa listesini yükle
-   
+
   }
 
   loadCrewList(): void {
@@ -128,7 +130,7 @@ export class AppComponent {
         message: 'Are you sure you want to delete this crew member? This action cannot be undone.'
       }
     });
-  
+
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.crewService.deleteCrew(id); // Servis ile silme işlemi
@@ -136,7 +138,7 @@ export class AppComponent {
       }
     });
   }
-  
+
 
   openEditDialog(crew: Crew): void {
     const dialogRef = this.dialog.open(EditCrewDialogComponent, {
@@ -201,7 +203,7 @@ export class AppComponent {
   }
   toggleTheme(isChecked: boolean): void {
     this.isDarkMode = isChecked;
-  
+
     if (this.isDarkMode) {
       document.body.classList.add('dark-theme');
       document.body.classList.remove('light-theme');
@@ -210,6 +212,6 @@ export class AppComponent {
       document.body.classList.remove('dark-theme');
     }
   }
-  
+
   protected readonly HTMLSelectElement = HTMLSelectElement;
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { CrewService } from '../services/crew.service';
-import { Crew as CrewModel } from '../services/crew.service';
+import { CrewService } from '../../services/crew.service';
+import { Crew as CrewModel } from '../../services/crew.service';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';

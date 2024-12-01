@@ -20,9 +20,18 @@ export class CertificateTypeService {
     return this.certificateTypesSubject.value;
   }
 
-  addCertificateType(newType: { name: string; description: string }): void {
-    const currentTypes = this.certificateTypesSubject.value;
-    this.certificateTypesSubject.next([...currentTypes, newType]);
-    console.log(this.certificateTypesSubject);
+  addCertificateType(newType: { name: string; description: string }): Observable<void> {
+    return new Observable<void>((observer) => {
+      const currentTypes = this.certificateTypesSubject.value;
+
+      this.certificateTypesSubject.next([
+        ...currentTypes,
+        { id: this.nextId++, ...newType },
+      ]);
+
+      // İşlem başarıyla tamamlandı
+      observer.next();
+      observer.complete();
+    });
   }
 }

@@ -18,5 +18,24 @@
   "DISCOUNT": "Remise",
   "ENTER_DISCOUNT": "Entrer la remise",
   "DELETE_CREW_MEMBER": "Supprimer un membre d'équipage",
-  "DELETE_CONFIRM_MESSAGE": "Êtes-vous sûr de vouloir supprimer ce membre d'équipage ? Cette action ne peut pas être annulée."
+  "DELETE_CONFIRM_MESSAGE": "Êtes-vous sûr de vouloir supprimer ce membre d'équipage ? Cette action ne peut pas être annulée.",
+  "ADD_CERTIFICATE_TYPE": "Ajouter un type de certificat",
+  "NAME": "Nom",
+  "ENTER_NAME": "Entrez un nom",
+  "NAME_REQUIRED": "Le nom est obligatoire.",
+  "NAME_TOO_SHORT": "Le nom doit comporter au moins 3 caractères.",
+  "NAME_TOO_LONG": "Le nom ne peut pas dépasser 50 caractères.",
+  "DESCRIPTION": "Description",
+  "ENTER_DESCRIPTION": "Entrez une description",
+  "SAVE": "Sauvegarder",
+  "CANCEL": "Annuler",
+  "NAVBAR": {
+    "TITLE": "Système de gestion d'équipage",
+    "HOME": "Accueil",
+    "ABOUT": "À propos",
+    "CONTACT": "Contact",
+    "LANGUAGE": "Langue",
+    "DARK_MODE": "Mode sombre"
+  }
+
 }
