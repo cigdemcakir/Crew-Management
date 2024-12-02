@@ -20,6 +20,7 @@ import { CrewService } from './services/crew.service';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 import {NavbarComponent} from './shared/navbar/navbar.component';
+import { FormGroup, FormControl } from '@angular/forms';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -61,12 +62,11 @@ interface Certificate {
     CommonModule,
     MatDialogModule,
     FormsModule,
-    ReactiveFormsModule, // Form işlevselliği için gerekli
+    ReactiveFormsModule, 
     MatFormFieldModule,
     MatInputModule,
     RouterModule,
     MatSlideToggleModule,
-    ConfirmDialogComponent,
     NavbarComponent
   ],
   templateUrl: './app.component.html',
@@ -79,10 +79,21 @@ export class AppComponent {
   objectKeys = Object.keys;
   crewList: Crew[] = []; // Tayfa listesi
   isDarkMode: boolean = false;
+  filteredCrewList: any[] = []; // Filtrelenmiş liste
+
+  titles: string[] = ['Captain', 'Engineer', 'Mechanic', 'Deckhand']; // Görev listesi
+  nationalities: string[] = ['USA', 'UK', 'India', 'Canada']; // Milliyetler
+  
+  filterForm = new FormGroup({
+    search: new FormControl(''),
+    title: new FormControl(''),
+    nationality: new FormControl(''),
+  });
 
   displayedColumns: string[] = [
     'firstName',
     'lastName',
+    'title',
     'nationality',
     'daysOnBoard',
     'dailyRate',
@@ -99,13 +110,30 @@ export class AppComponent {
       this.isHomeRoute = this.router.url === '/';
     });
     this.translate.setDefaultLang('en');
-    this.translate.use('en'); // İngilizce ile başlat
-    this.loadCrewList(); // Tayfa listesini yükle
+    this.translate.use('en'); 
+    this.loadCrewList();
 
   }
+  ngOnInit() {
+    this.filterForm.valueChanges.subscribe(() => this.applyFilters());
+  }
+  applyFilters() {
+    const { search, title, nationality } = this.filterForm.value;
 
+    this.filteredCrewList = this.crewList.filter((crew) => {
+      const matchesSearch =
+        !search ||
+        crew.firstName.toLowerCase().includes(search.toLowerCase()) ||
+        crew.lastName.toLowerCase().includes(search.toLowerCase());
+      const matchesTitle = !title || crew.title === title;
+      const matchesNationality = !nationality || crew.nationality === nationality;
+
+      return matchesSearch && matchesTitle && matchesNationality;
+    });
+  }
   loadCrewList(): void {
     this.crewList = this.crewService.getCrewList();
+    this.filteredCrewList = [...this.crewList];
     this.updateTotalIncomeSummary(); // Toplam özeti güncelle
   }
 
@@ -133,8 +161,8 @@ export class AppComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.crewService.deleteCrew(id); // Servis ile silme işlemi
-        this.loadCrewList(); // Listeyi güncelle
+        this.crewService.deleteCrew(id); 
+        this.loadCrewList(); 
       }
     });
   }
@@ -143,38 +171,37 @@ export class AppComponent {
   openEditDialog(crew: Crew): void {
     const dialogRef = this.dialog.open(EditCrewDialogComponent, {
       width: '90vw',
-      maxWidth: 'none', // Maksimum genişlik sınırlamasını kaldırır
-      height: 'auto', // Yükseklik içeriğe göre dinamik olur
+      maxWidth: 'none', 
+      height: 'auto', 
       maxHeight: '90vh',
-      data: { ...crew } // Seçilen satırdaki veriyi popup'a gönderiyoruz
+      data: { ...crew }
     });
 
     dialogRef.afterClosed().subscribe((updatedCrew) => {
       if (updatedCrew) {
-        this.crewService.updateCrew(updatedCrew); // Servis üzerinden güncelle
-        this.loadCrewList(); // Listeyi yeniden yükle
+        this.crewService.updateCrew(updatedCrew); 
+        this.loadCrewList(); 
       }
     });
   }
   openAddCrewDialog(): void {
     const dialogRef = this.dialog.open(AddCrewDialogComponent, {
       width: '90vw',
-      maxWidth: 'none', // Maksimum genişlik sınırlamasını kaldırır
-      height: 'auto', // Yükseklik içeriğe göre dinamik olur
+      maxWidth: 'none', 
+      height: 'auto',
       maxHeight: '90vh',
     });
 
     dialogRef.afterClosed().subscribe((newCrew) => {
       if (newCrew) {
-        this.crewService.addCrew(newCrew); // Servis üzerinden ekle
-        this.loadCrewList(); // Listeyi yeniden yükle
+        this.crewService.addCrew(newCrew); 
+        this.loadCrewList(); 
       }
     });
   }
   totalIncomeSummary: { [currency: string]: number } = {};
-  // Satır bazında güncellenmiş toplamı hesaplar
   updateCrewList(): void {
-    this.crewList = [...this.crewList]; // Referansı değiştirmek için listeyi kopyala
+    this.crewList = [...this.crewList]; 
   }
 
   applyDiscount(crew: Crew): void {
@@ -197,7 +224,6 @@ export class AppComponent {
     this.totalIncomeSummary = summary;
   }
 
-  // Satırdaki discount güncellendiğinde çağrılır
   updateTotalIncome(crew: Crew): void {
     this.updateTotalIncomeSummary(); // Toplam özeti güncelle
   }
@@ -212,6 +238,14 @@ export class AppComponent {
       document.body.classList.remove('dark-theme');
     }
   }
-
+  resetFilters(): void {
+    this.filterForm.reset({
+      search: '',
+      title: '',
+      nationality: ''
+    });
+    this.filteredCrewList = [...this.crewList]; 
+  }
+  
   protected readonly HTMLSelectElement = HTMLSelectElement;
 }

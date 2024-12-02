@@ -91,5 +91,11 @@
   "CERTIFICATE_TYPE": "Type de certificat",
   "ISSUE_DATE": "Date de délivrance",
   "EXPIRY_DATE": "Date d'expiration",
-  "REQUIRED_ERROR": "Ce champ est requis."
+  "REQUIRED_ERROR": "Ce champ est requis.",
+  "SEARCH": "Rechercher",
+  "SEARCH BY NAME": "Rechercher par nom",
+  "FILTER BY TITLE": "Filtrer par titre",
+  "FILTER BY NATIONALITY": "Filtrer par nationalité",
+  "ALL": "Tous",
+  "RESET FILTERS": "Réinitialiser les Filtres"
 }

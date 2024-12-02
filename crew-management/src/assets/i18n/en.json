@@ -91,7 +91,11 @@
   "CERTIFICATE_TYPE": "Certificate Type",
   "ISSUE_DATE": "Issue Date",
   "EXPIRY_DATE": "Expiry Date",
-  "REQUIRED_ERROR": "This field is required."
-
-
+  "REQUIRED_ERROR": "This field is required.",
+  "SEARCH": "Search",
+  "SEARCH BY NAME": "Search by name",
+  "FILTER BY TITLE": "Filter by title",
+  "FILTER BY NATIONALITY": "Filter by nationality",
+  "ALL": "All",
+ "RESET FILTERS": "Reset Filters"
 }
