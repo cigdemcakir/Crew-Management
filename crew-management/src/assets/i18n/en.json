@@ -85,5 +85,13 @@
   "SOCIAL_MEDIA": "Social Media",
   "LINKEDIN": "LinkedIn",
   "GITHUB": "GitHub",
-  "DOWNLOAD_CV": "Download CV"
+  "DOWNLOAD_CV": "Download CV",
+  "ADD_CERTIFICATE": "Add Certificate",
+  "DELETE_CERTIFICATE": "Delete",
+  "CERTIFICATE_TYPE": "Certificate Type",
+  "ISSUE_DATE": "Issue Date",
+  "EXPIRY_DATE": "Expiry Date",
+  "REQUIRED_ERROR": "This field is required."
+
+
 }

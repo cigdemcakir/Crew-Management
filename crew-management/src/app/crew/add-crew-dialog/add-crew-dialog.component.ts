@@ -12,6 +12,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ChangeDetectorRef } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-crew-dialog',
@@ -28,7 +32,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatOptionModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatIconModule
+    MatIconModule,
+    TranslateModule
   ],
 })
 

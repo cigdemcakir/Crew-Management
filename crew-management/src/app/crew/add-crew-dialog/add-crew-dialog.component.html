@@ -4,7 +4,7 @@
 
     <div class="form-row">
       <mat-form-field appearance="outline">
-        <mat-label>First Name</mat-label>
+        <mat-label>{{ 'FIRST_NAME' | translate }}</mat-label>
         <input
           matInput
           [(ngModel)]="newCrew.firstName"
@@ -12,11 +12,13 @@
           required
           #firstName="ngModel"
         />
-        <mat-error *ngIf="firstName.invalid && firstName.touched">First Name is required</mat-error>
+        <mat-error *ngIf="firstName.invalid && firstName.touched">
+          {{ 'REQUIRED_ERROR' | translate }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Last Name</mat-label>
+        <mat-label>{{ 'LAST_NAME' | translate }}</mat-label>
         <input
           matInput
           [(ngModel)]="newCrew.lastName"
@@ -24,45 +26,53 @@
           required
           #lastName="ngModel"
         />
-        <mat-error *ngIf="lastName.invalid && lastName.touched">Last Name is required</mat-error>
+        <mat-error *ngIf="lastName.invalid && lastName.touched">
+          {{ 'REQUIRED_ERROR' | translate }}
+        </mat-error>
       </mat-form-field>
     </div>
 
     <div class="form-row">
       <mat-form-field appearance="outline">
-        <mat-label>Title</mat-label>
+        <mat-label>{{ 'TITLE' | translate }}</mat-label>
         <mat-select [(ngModel)]="newCrew.title" name="title" required #title="ngModel">
           <mat-option *ngFor="let title of titles" [value]="title">
             {{ title }}
           </mat-option>
         </mat-select>
-        <mat-error *ngIf="title.invalid && title.touched">Title is required</mat-error>
+        <mat-error *ngIf="title.invalid && title.touched">
+          {{ 'REQUIRED_ERROR' | translate }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Nationality</mat-label>
+        <mat-label>{{ 'NATIONALITY' | translate }}</mat-label>
         <mat-select [(ngModel)]="newCrew.nationality" name="nationality" required #nationality="ngModel">
           <mat-option *ngFor="let nationality of nationalities" [value]="nationality">
             {{ nationality }}
           </mat-option>
         </mat-select>
-        <mat-error *ngIf="nationality.invalid && nationality.touched">Nationality is required</mat-error>
+        <mat-error *ngIf="nationality.invalid && nationality.touched">
+          {{ 'REQUIRED_ERROR' | translate }}
+        </mat-error>
       </mat-form-field>
     </div>
 
     <div class="form-row">
       <mat-form-field appearance="outline">
-        <mat-label>Currency</mat-label>
+        <mat-label>{{ 'CURRENCY' | translate }}</mat-label>
         <mat-select [(ngModel)]="newCrew.currency" name="currency" required #currency="ngModel">
           <mat-option *ngFor="let currency of currencies" [value]="currency">
             {{ currency }}
           </mat-option>
         </mat-select>
-        <mat-error *ngIf="currency.invalid && currency.touched">Currency is required</mat-error>
+        <mat-error *ngIf="currency.invalid && currency.touched">
+          {{ 'REQUIRED_ERROR' | translate }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Days on Board</mat-label>
+        <mat-label>{{ 'DAYS_ON_BOARD' | translate }}</mat-label>
         <input
           matInput
           type="number"
@@ -71,11 +81,13 @@
           required
           #daysOnBoard="ngModel"
         />
-        <mat-error *ngIf="daysOnBoard.invalid && daysOnBoard.touched">Days on Board is required</mat-error>
+        <mat-error *ngIf="daysOnBoard.invalid && daysOnBoard.touched">
+          {{ 'REQUIRED_ERROR' | translate }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Daily Rate</mat-label>
+        <mat-label>{{ 'DAILY_RATE' | translate }}</mat-label>
         <input
           matInput
           type="number"
@@ -84,15 +96,17 @@
           required
           #dailyRate="ngModel"
         />
-        <mat-error *ngIf="dailyRate.invalid && dailyRate.touched">Daily Rate is required</mat-error>
+        <mat-error *ngIf="dailyRate.invalid && dailyRate.touched">
+        {{ 'REQUIRED_ERROR' | translate }}
+        </mat-error>
       </mat-form-field>
     </div>
 
-    <h3>Certificates</h3>
+    <h3>{{ 'CERTIFICATES' | translate }}</h3>
     <div *ngFor="let cert of newCrew.certificates; let i = index" class="form-row">
       <!-- Certificate Type -->
       <mat-form-field appearance="outline">
-        <mat-label>Certificate Type</mat-label>
+        <mat-label>{{ 'CERTIFICATE_TYPE' | translate }}</mat-label>
         <mat-select [(ngModel)]="cert.type" name="certType{{i}}">
           <mat-option *ngFor="let type of certificateTypes" [value]="type.name">
             {{ type.name }}
@@ -101,14 +115,14 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Issue Date</mat-label>
+        <mat-label>{{ 'ISSUE_DATE' | translate }}</mat-label>
         <input matInput [matDatepicker]="picker" [(ngModel)]="cert.issueDate" name="issueDate{{i}}" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Expiry Date</mat-label>
+        <mat-label>{{ 'EXPIRY_DATE' | translate }}</mat-label>
         <input matInput [matDatepicker]="picker2" [(ngModel)]="cert.expiryDate" name="expiryDate{{i}}" />
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
@@ -129,7 +143,11 @@
   </div>
 
   <div mat-dialog-actions>
-    <button mat-stroked-button color="warn" (click)="cancel()">Cancel</button>
-    <button mat-raised-button color="primary" [disabled]="!crewForm.valid" type="submit">Save</button>
+    <button mat-stroked-button color="warn" (click)="cancel()">
+      {{ 'CANCEL' | translate }}
+    </button>
+    <button mat-raised-button color="primary" [disabled]="!crewForm.valid" type="submit">
+      {{ 'SAVE' | translate }}
+    </button>
   </div>
 </form>
