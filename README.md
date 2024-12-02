@@ -49,4 +49,6 @@ Automatically updates the row and total income summary.
 
 Also this project supports both Dark Mode and Light Mode for an enhanced user experience.
 
+Allows dynamic filtering by name, title, and nationality for a more personalized and efficient search experience.
 
+Provides an option to export the crew list to an Excel file, enabling data portability and offline access.
