@@ -98,5 +98,10 @@
   "FILTER BY NATIONALITY": "Filter by nationality",
   "ALL": "All",
  "RESET FILTERS": "Reset Filters",
- "EXPORT TO EXCEL": "Export as Excel"
+ "EXPORT TO EXCEL": "Export as Excel",
+ "FILTER_FEATURE": "Filter and Search",
+  "FILTER_DESCRIPTION": "Allows dynamic filtering by name, title, and nationality for a more personalized and efficient search experience.",
+  "EXPORT_FEATURE": "Export to Excel",
+  "EXPORT_DESCRIPTION": "Provides an option to export the crew list to an Excel file, enabling data portability and offline access."
+
 }

@@ -98,5 +98,10 @@
   "FILTER BY NATIONALITY": "Filtrar por nacionalidade",
   "ALL": "Todos",
   "RESET FILTERS": "Redefinir Filtros",
-  "EXPORT TO EXCEL": "Exportar como Excel"
+  "EXPORT TO EXCEL": "Exportar como Excel",
+  "FILTER_FEATURE": "Filtrar e Pesquisar",
+  "FILTER_DESCRIPTION": "Permite filtrar dinamicamente por nome, título e nacionalidade para uma experiência de pesquisa mais personalizada e eficiente.",
+  "EXPORT_FEATURE": "Exportar para Excel",
+  "EXPORT_DESCRIPTION": "Fornece uma opção para exportar a lista da tripulação para um arquivo Excel, permitindo a portabilidade dos dados e o acesso offline."
+
 }

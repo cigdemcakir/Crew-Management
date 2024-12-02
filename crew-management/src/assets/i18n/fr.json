@@ -98,5 +98,10 @@
   "FILTER BY NATIONALITY": "Filtrer par nationalité",
   "ALL": "Tous",
   "RESET FILTERS": "Réinitialiser les Filtres",
-  "EXPORT TO EXCEL": "Exporter en Excel"
+  "EXPORT TO EXCEL": "Exporter en Excel",
+  "FILTER_FEATURE": "Filtrer et rechercher",
+  "FILTER_DESCRIPTION": "Permet de filtrer dynamiquement par nom, titre et nationalité pour une recherche plus personnalisée et efficace.",
+  "EXPORT_FEATURE": "Exporter vers Excel",
+  "EXPORT_DESCRIPTION": "Offre une option pour exporter la liste d'équipage dans un fichier Excel, permettant la portabilité des données et un accès hors ligne."
+
 }
