@@ -80,6 +80,7 @@
           name="daysOnBoard"
           required
           #daysOnBoard="ngModel"
+          min="0"
         />
         <mat-error *ngIf="daysOnBoard.invalid && daysOnBoard.touched">
           {{ 'REQUIRED_ERROR' | translate }}
@@ -95,6 +96,7 @@
           name="dailyRate"
           required
           #dailyRate="ngModel"
+          min="0"
         />
         <mat-error *ngIf="dailyRate.invalid && dailyRate.touched">
         {{ 'REQUIRED_ERROR' | translate }}
