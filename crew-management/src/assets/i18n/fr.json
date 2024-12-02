@@ -97,5 +97,6 @@
   "FILTER BY TITLE": "Filtrer par titre",
   "FILTER BY NATIONALITY": "Filtrer par nationalité",
   "ALL": "Tous",
-  "RESET FILTERS": "Réinitialiser les Filtres"
+  "RESET FILTERS": "Réinitialiser les Filtres",
+  "EXPORT TO EXCEL": "Exporter en Excel"
 }

@@ -21,6 +21,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 import {NavbarComponent} from './shared/navbar/navbar.component';
 import { FormGroup, FormControl } from '@angular/forms';
+import * as ExcelJS from 'exceljs';
+import { saveAs } from 'file-saver';
+import FileSaver from 'file-saver';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -246,6 +249,50 @@ export class AppComponent {
     });
     this.filteredCrewList = [...this.crewList]; 
   }
+  downloadExcel() {
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Crew List');
   
+    // Başlıklar
+    worksheet.columns = [
+      { header: 'First Name', key: 'firstName', width: 20 },
+      { header: 'Last Name', key: 'lastName', width: 20 },
+      { header: 'Title', key: 'title', width: 20 },
+      { header: 'Nationality', key: 'nationality', width: 20 },
+      { header: 'Days On Board', key: 'daysOnBoard', width: 15 },
+      { header: 'Daily Rate', key: 'dailyRate', width: 15 },
+      { header: 'Currency', key: 'currency', width: 10 },
+      { header: 'Total Income', key: 'totalIncome', width: 20 },
+    ];
+  
+    // Veriler
+    this.filteredCrewList.forEach((crew) => {
+      worksheet.addRow({
+        firstName: crew.firstName,
+        lastName: crew.lastName,
+        title: crew.title,
+        nationality: crew.nationality,
+        daysOnBoard: crew.daysOnBoard,
+        dailyRate: crew.dailyRate,
+        currency: crew.currency,
+        totalIncome: crew.totalIncome,
+      });
+    });
+  
+    // Başlıkları Stilize Etme
+    worksheet.getRow(1).eachCell((cell) => {
+      cell.font = { bold: true };
+      cell.alignment = { vertical: 'middle', horizontal: 'center' };
+    });
+  
+    // Excel'i Kaydetme
+    workbook.xlsx.writeBuffer().then((buffer) => {
+      saveAs(new Blob([buffer]), 'Crew_List.xlsx');
+    });
+  }
+  saveFile() {
+    const data = new Blob(['Hello, World!'], { type: 'text/plain;charset=utf-8' });
+    FileSaver.saveAs(data, 'example.txt');
+  }
   protected readonly HTMLSelectElement = HTMLSelectElement;
 }

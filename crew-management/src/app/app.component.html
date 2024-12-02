@@ -53,10 +53,14 @@
       {{ 'RESET FILTERS' | translate }}
     </button>
   </form>
-
-
+  <div class="table-header">
+    <button class="export-button" mat-raised-button (click)="downloadExcel()">
+      <mat-icon>download</mat-icon>
+      {{ 'EXPORT TO EXCEL' | translate }}
+    </button>
+  </div>
   <div class="grid-container">
-
+ 
     <table mat-table [dataSource]="filteredCrewList" class="mat-elevation-z8">
       <!-- First Name -->
       <ng-container matColumnDef="firstName">
