@@ -138,25 +138,35 @@
         </mat-error>
       </mat-form-field>
 
-      <button mat-icon-button color="warn" (click)="removeCertificate(i)">Delete</button>
+      <button
+  mat-icon-button
+  class="delete-button"
+  (click)="removeCertificate(i)"
+>
+  <mat-icon>delete</mat-icon>
+  {{ 'DELETE_CERTIFICATE' | translate }}
+</button>
     </div>
 
     <button
-  mat-fab
-  color="primary"
-  class="add-certificate-button"
-  (click)="addCertificate()"
-  type="button"
->
-  <mat-icon>add</mat-icon>
-</button>
+    mat-raised-button
+    color="primary"
+    class="add-certificate-button"
+    (click)="addCertificate()"
+    type="button"
+  >
+    <mat-icon>add_circle</mat-icon>
+    {{ 'ADD_CERTIFICATE' | translate }}
+  </button>
   </div>
 
-  <div mat-dialog-actions>
+  <div mat-dialog-actions class="action-buttons">
     <button mat-stroked-button color="warn" (click)="cancel()">
+      <mat-icon>cancel</mat-icon>
       {{ 'CANCEL' | translate }}
     </button>
     <button mat-raised-button color="primary" [disabled]="!crewForm.valid" type="submit">
+      <mat-icon>save</mat-icon>
       {{ 'SAVE' | translate }}
     </button>
   </div>
