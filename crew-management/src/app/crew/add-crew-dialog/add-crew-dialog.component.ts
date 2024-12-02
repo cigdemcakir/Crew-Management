@@ -16,6 +16,8 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
+import {ConfirmDialogComponent} from '../../shared/confirm-dialog/confirm-dialog.component';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-crew-dialog',
@@ -33,12 +35,16 @@ import { TranslateService } from '@ngx-translate/core';
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,
-    TranslateModule
+    TranslateModule,
+    MatDialogModule,
   ],
 })
 
 
 export class AddCrewDialogComponent {
+  minDate: Date = new Date(1900, 0, 1); // 1 Ocak 1900
+  maxDate: Date = new Date(); // Bugünkü tarih
+
   newCrew = {
     firstName: '',
     lastName: '',
@@ -67,7 +73,8 @@ export class AddCrewDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<AddCrewDialogComponent>,
     private certificateTypeService: CertificateTypeService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -83,6 +90,18 @@ export class AddCrewDialogComponent {
       type: '',
       issueDate: null,
       expiryDate: null,
+    });
+
+      // Başarı mesajı göstermek için ConfirmDialog kullanımı
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        width: '400px',
+        autoFocus: false,
+        restoreFocus: false,
+        data: {
+          title: 'Success',
+          message: 'Certificate has been added successfully!',
+          cancelText: 'OK',
+        },
     });
 
   }
