@@ -1,63 +1,3 @@
-<style>
-.mat-dialog-container {
-  width: 700px;
-  max-width: 90%;
-  border-radius: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background: linear-gradient(135deg, #ffffff, #f8f9fa);
-  padding: 24px;
-}
-
-.popup-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 16px;
-  text-align: center;
-}
-
-.popup-content {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.form-row {
-  display: flex;
-  gap: 16px;
-  justify-content: space-between;
-}
-
-mat-form-field {
-  flex: 1;
-  background: #fff;
-  border-radius: 8px;
-}
-
-mat-dialog-actions {
-  margin-top: 16px;
-  justify-content: flex-end;
-}
-
-mat-form-field {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-mat-form-field:hover {
-  transform: scale(1.02);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-button {
-  transition: background 0.3s ease, box-shadow 0.2s ease;
-}
-
-button:hover {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-</style>
-
 <h2 mat-dialog-title  class="popup-title">{{ 'EDIT CREW' | translate }}</h2>
 <div mat-dialog-content class="popup-content">
   <div class="form-row">
@@ -71,7 +11,6 @@ button:hover {
       <input matInput [(ngModel)]="data.lastName" />
     </mat-form-field>
   </div>
-
   <div class="form-row">
     <mat-form-field appearance="outline">
       <mat-label>{{ 'TITLE' | translate }}</mat-label>
@@ -81,9 +20,7 @@ button:hover {
         </mat-option>
       </mat-select>
     </mat-form-field>
-  </div>
-  <!-- Nationality -->
-  <div class="form-row">
+  
     <mat-form-field appearance="outline">
       <mat-label>{{ 'NATIONALITY' | translate }}</mat-label>
       <mat-select [(value)]="data.nationality">
@@ -93,8 +30,8 @@ button:hover {
       </mat-select>
     </mat-form-field>
   </div>
+  
 
-  <!-- Currency -->
   <div class="form-row">
     <mat-form-field appearance="outline">
       <mat-label>{{ 'CURRENCY' | translate }}</mat-label>
@@ -104,22 +41,27 @@ button:hover {
         </mat-option>
       </mat-select>
     </mat-form-field>
-  </div>
-
-  <div class="form-row">
+  
     <mat-form-field appearance="outline">
       <mat-label>{{ 'DAYS_ON_BOARD' | translate }}</mat-label>
       <input matInput [(ngModel)]="data.daysOnBoard" type="number" />
     </mat-form-field>
-
+  
     <mat-form-field appearance="outline">
       <mat-label>{{ 'DAILY_RATE' | translate }}</mat-label>
       <input matInput [(ngModel)]="data.dailyRate" type="number" />
     </mat-form-field>
   </div>
+  
 
 </div>
-<div mat-dialog-actions >
-  <button mat-button (click)="cancel()">{{ 'CANCEL' | translate }}</button>
-  <button mat-button color="primary" (click)="save()">{{ 'SAVE' | translate }}</button>
+<div mat-dialog-actions class="action-buttons">
+  <button mat-stroked-button color="warn" (click)="cancel()">
+    <mat-icon>cancel</mat-icon>
+    {{ 'CANCEL' | translate }}
+  </button>
+  <button mat-raised-button color="primary" (click)="save()">
+    <mat-icon>save</mat-icon>
+    {{ 'SAVE' | translate }}
+  </button>
 </div>

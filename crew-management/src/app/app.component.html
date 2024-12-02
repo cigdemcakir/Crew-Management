@@ -18,14 +18,18 @@
     </mat-slide-toggle>
   </div>-->
 
-  <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin: 10px;">
-    <button mat-raised-button color="primary" (click)="openAddCrewDialog()">
+  <div class="action-buttons">
+    <button class="add-crew-button" mat-raised-button (click)="openAddCrewDialog()">
+      <mat-icon class="add-button-icon">group_add</mat-icon>
       {{ 'ADD CREW' | translate }}
     </button>
-    <button mat-raised-button color="primary" [routerLink]="'/add-certificate-type'">
+  
+    <button class="add-certificate-button" mat-raised-button [routerLink]="'/add-certificate-type'">
+      <mat-icon class="add-button-icon">add_circle</mat-icon>
       {{ 'ADD CERTIFICATE TYPE' | translate }}
     </button>
   </div>
+  
 
 
   <div class="grid-container">
@@ -93,7 +97,7 @@
         <td mat-cell *matCellDef="let crew">
           <button
           mat-button
-          color="accent"
+         
           class="view-certificates-button"
           [routerLink]="['/crew-card', crew.id]"
           [queryParams]="{ tab: 'certificates' }">
